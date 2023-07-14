@@ -1,12 +1,13 @@
-import { IoMdSettings } from "react-icons/io"
-import { MdNotifications } from "react-icons/md"
+// import { IoMdSettings } from "react-icons/io"
+// import { MdNotifications } from "react-icons/md"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
+import { Cog6ToothIcon, BellIcon } from "@heroicons/react/24/outline"
 
 const Header = () => {
   return (
     <header className="fixed inset-x-0 z-50 bg-sky-100 py-4 px-8 border-b flex items-center justify-between shadow-md">
         <div className="flex items-center space-x-6">
-          <h1 className="font-medium text-xl">CollaboSphere</h1>
+          <h1 className="font-medium text-xl cursor-pointer">CollaboSphere</h1>
           <div className="flex space-x-6 h-auto font-semibold text-gray-600">
             <p>Your work</p>
             <p>Projects</p>
@@ -23,8 +24,8 @@ const Header = () => {
             <input type="text" className="focus:outline-none focus:border-0" placeholder="Search" />
             <button hidden>Search</button>
           </form>
-          <MdNotifications size={28} className="cursor-pointer"/>
-          <IoMdSettings size={28} className="cursor-pointer"/>
+          <BellIcon className="cursor-pointer w-6 h-6"/>
+          <Cog6ToothIcon className="cursor-pointer w-6 h-6"/>
           <div className="w-8 h-8 rounded-full bg-amber-500 text-white flex justify-center items-center cursor-pointer">D</div>
         </div>
     </header>
