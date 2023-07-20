@@ -2,27 +2,27 @@ const tasks = [
   {
     id: 1,
     title: "Work it",
-    status: "todo",
+    status: "Todo",
   },
   {
     id: 2,
     title: "Enchanted",
-    status: "inProgress",
+    status: "In Progress",
   },
   {
     id: 3,
     title: "Wasted",
-    status: "done",
+    status: "Done",
   },
   {
     id: 4,
     title: "Hello Boy",
-    status: "todo",
+    status: "Todo",
   },
   {
     id: 5,
     title: "Idiot",
-    status: "done",
+    status: "Done",
   },
 ];
 
@@ -35,7 +35,7 @@ const getTasksGroupedbyColumns = () => {
     return acc;
   }, new Map());
 
-  const columnTypes = ["todo", "inProgress", "done"];
+  const columnTypes = ["Todo", "In Progress", "Done"];
   for (const columnType of columnTypes) {
     if (!columns.get(columnType)) {
       columns.set(columnType, {
