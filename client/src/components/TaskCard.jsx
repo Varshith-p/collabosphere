@@ -1,5 +1,16 @@
 /* eslint-disable react/prop-types */
-import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import {
+  EllipsisVerticalIcon,
+  PencilIcon,
+  UserIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+} from "@material-tailwind/react";
 
 const TaskCard = ({
   id,
@@ -18,11 +29,26 @@ const TaskCard = ({
     >
       <div className="flex justify-between items-center px-5 py-3">
         <p className="font-normal">{task.title}</p>
-        {/* <button className="text-red-500 hover:text-red-600"> */}
-        <button className="">
-          {/* <XCircleIcon className="ml-5 h-8 w-8" /> */}
-          <EllipsisVerticalIcon className="h-5 w-5" />
-        </button>
+        <Menu>
+          <MenuHandler>
+            <button className="">
+              {/* <XCircleIcon className="ml-5 h-8 w-8" /> */}
+              <EllipsisVerticalIcon className="h-5 w-5" />
+            </button>
+          </MenuHandler>
+          <MenuList>
+            <MenuItem className="flex items-center gap-2">
+              <PencilIcon className="w-4" /> Edit
+            </MenuItem>
+            <MenuItem className="flex items-center gap-2">
+              <UserIcon className="w-4" /> Assign member
+            </MenuItem>
+            <MenuItem className="flex items-center gap-2">
+              <TrashIcon className="w-4" />
+              Delete
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
-import logo from "../assets/react.svg";
+import { Card, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
+
 import {
   ViewColumnsIcon,
   ChatBubbleOvalLeftIcon,
@@ -9,34 +10,51 @@ import {
 
 const Sidebar = () => {
   return (
-    <aside className="hidden md:block pt-24 fixed w-64 top-0 bottom-0 border-r bg-gray-50 border-gray-400 px-4">
-      <div className="flex items-center space-x-2 pb-4 border-b">
-        <div className="w-10 h-10 bg-white flex items-center justify-center">
-          <img src={logo} className="w-4/6" alt="logo" />
-        </div>
+    <Card className="hidden lg:block fixed top-16 h-[calc(100vh-3rem)] w-full max-w-[16rem] p-4 border-r">
+      <div className="mb-2 flex items-center gap-4 p-4">
+        <img
+          src="/vite.svg"
+          alt="brand"
+          className="h-10 w-10 bg-blue-gray-50 p-1"
+        />
         <div>
-          <h1 className="font-medium">Demo</h1>
-          <span className="text-xs">Software Project</span>
+          <h1 className="text-black font-semibold">Demo</h1>
+          <p className="text-sm">Software Project</p>
         </div>
       </div>
-      <div className="mt-6 flex flex-col space-y-4">
-        <button className="py-2 px-2 rounded-md flex space-x-2 items-center hover:bg-white hover:shadow-sm">
-          <ViewColumnsIcon className="w-6 h-6 pt-1" /> <span>Board</span>
-        </button>
-        <button className="py-2 px-2 rounded-md flex space-x-2 items-center hover:bg-white hover:shadow-sm">
-          <ChatBubbleOvalLeftIcon className="w-6 h-6 pt-1" /> <span>Chat</span>
-        </button>
-        <button className="py-2 px-2 rounded-md flex space-x-2 items-center hover:bg-white hover:shadow-sm">
-          <DocumentIcon className="w-6 h-6 pt-1" /> <span>Resources</span>
-        </button>
-        <button className="py-2 px-2 rounded-md flex space-x-2 items-center hover:bg-white hover:shadow-sm">
-          <UserGroupIcon className="w-6 h-6 pt-1" /> <span>Members</span>
-        </button>
-        <button className="py-2 px-2 rounded-md flex space-x-2 items-center hover:bg-white hover:shadow-sm">
-          <Cog6ToothIcon className="w-6 h-6 pt-1" /> <span>Settings</span>
-        </button>
-      </div>
-    </aside>
+      <List>
+        <ListItem>
+          <ListItemPrefix>
+            <ViewColumnsIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Board
+        </ListItem>
+        <ListItem>
+          <ListItemPrefix>
+            <ChatBubbleOvalLeftIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Chat
+        </ListItem>
+        <ListItem>
+          <ListItemPrefix>
+            <DocumentIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Resources
+        </ListItem>
+        <ListItem>
+          <ListItemPrefix>
+            <UserGroupIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Members
+        </ListItem>
+        <ListItem>
+          <ListItemPrefix>
+            <Cog6ToothIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Settings
+        </ListItem>
+      </List>
+    </Card>
   );
 };
 

@@ -17,13 +17,13 @@ const Column = ({ id, tasks, index }) => {
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
-                className={`p-2 rounded-md border border-gray-200 ${
-                  snapshot.isDraggingOver ? "bg-green-200" : "bg-gray-100/50"
+                className={`p-2 rounded-md border border-gray-400 ${
+                  snapshot.isDraggingOver ? "bg-green-200" : "bg-gray-300/50"
                 }`}
               >
-                <h2 className="flex justify-between font-bold text-lg p-2">
+                <h2 className="flex justify-between font-medium text-sm p-2">
                   {id}
-                  <span className="text-gray-500 bg-gray-200 rounded-full font-normal px-2 py-1 text-sm">
+                  <span className="text-gray-500 bg-white rounded-full font-normal px-2 py-1 text-sm">
                     {tasks.length}
                   </span>
                 </h2>

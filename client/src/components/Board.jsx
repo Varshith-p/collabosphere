@@ -2,7 +2,9 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { getTasksGroupedbyColumns } from "../utils/columns";
 import Column from "./Column";
 import { useState } from "react";
+import { Avatar } from "@material-tailwind/react";
 import { MagnifyingGlassIcon, UserPlusIcon } from "@heroicons/react/24/outline";
+import MobileSidebar from "./MobileSidebar";
 
 const Board = () => {
   const [columns, setColumns] = useState(getTasksGroupedbyColumns());
@@ -65,14 +67,17 @@ const Board = () => {
   };
 
   return (
-    <div className="w-screen pt-6 px-4 md:pt-8 md:px-8 md:pl-72 md:max-w-7xl">
-      <h1 className="font-semibold text-lg md:text-2xl pb-6">DEMO Board</h1>
+    <div className="w-screen pt-24 px-4 md:px-8 md:pl-72 md:max-w-7xl">
+      <div className="flex gap-x-1 items-center pb-6">
+        <MobileSidebar />
+        <h1 className="font-medium text-lg md:text-lg">DEMO Board</h1>
+      </div>
       <div className="flex md:gap-x-4">
         <form
           action=""
-          className="border border-gray-400 flex items-center w-fit mb-4 gap-x-2 bg-white rounded-md px-2 py-1"
+          className="border border-gray-400 text-sm flex h-full items-center w-fit mb-4 gap-x-1 bg-white rounded-md px-2 py-1"
         >
-          <MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />
+          <MagnifyingGlassIcon className="h-4 w-4 text-gray-800" />
           <input
             type="text"
             className="focus:outline-none focus:border-0 w-36"
@@ -80,16 +85,28 @@ const Board = () => {
           />
           <button hidden>Search</button>
         </form>
-        <div className="flex">
-          <div className="w-8 h-8 border-2 border-white rounded-full bg-amber-500 text-white flex justify-center items-center cursor-pointer">
-            D
-          </div>
-          <div className="relative -left-2 w-8 h-8 border-2 border-white rounded-full bg-violet-500 text-white flex justify-center items-center cursor-pointer">
-            A
-          </div>
-          <div className="w-8 h-8 text-gray-400 rounded-full bg-gray-200 flex justify-center items-center cursor-pointer">
-            <UserPlusIcon className="w-6" />
-          </div>
+        <div className="flex -space-x-4">
+          <Avatar
+            variant="circular"
+            alt="user 1"
+            className="border-2 border-white cursor-pointer w-8 h-8"
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+          />
+          <Avatar
+            variant="circular"
+            alt="user 2"
+            className="border-2 border-white cursor-pointer w-8 h-8"
+            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1061&q=80"
+          />
+          <Avatar
+            variant="circular"
+            alt="user 5"
+            className="border-2 border-white cursor-pointer w-8 h-8"
+            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80"
+          />
+        </div>
+        <div className="w-8 h-8 text-gray-600 rounded-full bg-gray-200 flex justify-center items-center cursor-pointer">
+          <UserPlusIcon className="w-6 h-6" />
         </div>
       </div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
