@@ -8,7 +8,7 @@ const Landing = () => {
         <h1 className="font-medium text-2xl">CollaboSphere</h1>
         <Link
           to={"/login"}
-          className="bg-[#407bff] text-white py-1 px-3 rounded-md"
+          className="bg-primary text-white py-1 px-3 rounded-md"
         >
           Sign in
         </Link>

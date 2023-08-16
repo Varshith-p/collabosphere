@@ -141,7 +141,7 @@ const Header = () => {
             <Link className="hover:text-gray-900">Recent</Link>
           </nav>
           <div className="hidden md:block font-medium text-sm">
-            <button className="bg-[#0D99FF] text-white px-3 py-1 rounded-md">
+            <button className="bg-primary text-white px-3 py-1 rounded-md">
               Create
             </button>
           </div>
