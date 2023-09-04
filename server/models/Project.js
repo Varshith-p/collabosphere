@@ -21,12 +21,29 @@ const ProjectSchema = new mongoose.Schema(
     logo: {
       type: String,
     },
+    visibility: {
+      type: String,
+      enum: ["Public", "Private"],
+      default: "Private",
+    },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
 ProjectSchema.virtual("messages", {
   ref: "Message",
+  localField: "_id",
+  foreignField: "project",
+});
+
+ProjectSchema.virtual("tasks", {
+  ref: "Task",
+  localField: "_id",
+  foreignField: "project",
+});
+
+ProjectSchema.virtual("resources", {
+  ref: "Resource",
   localField: "_id",
   foreignField: "project",
 });
