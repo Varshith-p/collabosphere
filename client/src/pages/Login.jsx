@@ -7,7 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/user/userSlice";
+import { login, register } from "../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -27,7 +27,7 @@ const Login = () => {
     name: "",
     email: "",
     password: "",
-    number: undefined,
+    mobile: undefined,
     profilePicture: null,
   });
 
@@ -40,7 +40,9 @@ const Login = () => {
     if (endPoint === "login") {
       dispatch(login(payload));
     } else {
-      console.log("signup not completed");
+      // delete the line below after integrating S3
+      delete payload.profilePicture;
+      dispatch(register(payload));
     }
   };
 
@@ -185,8 +187,8 @@ const Login = () => {
                 <label>mobile</label>
                 <input
                   type="number"
-                  name="number"
-                  value={signupData.number}
+                  name="mobile"
+                  value={signupData.mobile}
                   onChange={handleChange}
                   className="border px-2 py-1 rounded-md border-gray-500 focus:outline-0 focus:border-black"
                 />

@@ -15,7 +15,25 @@ export const login = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "http://localhost:5000/api/v1/auth/login",
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const register = createAsyncThunk(
+  "/user/register",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/auth/register",
         payload
       );
       return response.data;
@@ -52,6 +70,21 @@ const userSlice = createSlice({
     });
     builder.addCase(login.rejected, (state) => {
       state.isLoading = false;
+    });
+
+    builder.addCase(register.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(register.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.user = payload.user;
+      state.token = payload.token;
+      localStorage.setItem("user", JSON.stringify(payload.user));
+      localStorage.setItem("token", payload.token);
+    });
+    builder.addCase(register.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      console.log(payload);
     });
   },
 });
