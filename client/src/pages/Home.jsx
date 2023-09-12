@@ -1,13 +1,7 @@
-import Header from "../components/Header"
-import Main from "../components/Main"
+import Main from "../components/Main";
 
 const Home = () => {
-  return (
-    <div>
-        <Header />
-        <Main />
-    </div>
-  )
-}
+  return <Main />;
+};
 
-export default Home
+export default Home;

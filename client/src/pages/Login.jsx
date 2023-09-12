@@ -19,7 +19,7 @@ const Login = () => {
     if (user) {
       setTimeout(() => {
         navigate("/user/home");
-      }, 200);
+      }, 500);
     }
   }, [user, navigate]);
 

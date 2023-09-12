@@ -11,8 +11,14 @@ import {
   PowerIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../redux/user/userSlice";
 
 const ProfileMenu = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <Menu>
       <MenuHandler>
@@ -37,7 +43,13 @@ const ProfileMenu = () => {
           </Typography>
         </MenuItem>
         <hr className="my-2 border-blue-gray-50" />
-        <MenuItem className="flex items-center gap-2 ">
+        <MenuItem
+          className="flex items-center gap-2 "
+          onClick={() => {
+            dispatch(logout());
+            navigate("/");
+          }}
+        >
           <PowerIcon strokeWidth={2} className="h-4 w-4" />
           <Typography variant="small" className="font-normal">
             Sign Out
