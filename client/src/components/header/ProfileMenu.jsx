@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/popover";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../redux/user/userSlice";
+import { logout } from "../../redux/user/userSlice";
 import { useState } from "react";
 
 const ProfileMenu = () => {

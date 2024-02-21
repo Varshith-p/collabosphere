@@ -1,7 +1,9 @@
-import Main from "../components/Main";
+import EmptyPage from "@/components/home/EmptyPage";
+import Main from "@/components/home/Main";
 
 const Home = () => {
-  return <Main />;
+  const recent = [];
+  return recent.length > 0 ? <Main /> : <EmptyPage />;
 };
 
 export default Home;

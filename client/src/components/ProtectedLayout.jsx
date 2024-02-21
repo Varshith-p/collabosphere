@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Outlet, Navigate } from "react-router-dom";
-import Header from "./Header";
+import Header from "./header/Header";
 
 const ProtectedLayout = () => {
   const { user } = useSelector((store) => store.user);
@@ -8,10 +8,12 @@ const ProtectedLayout = () => {
     return <Navigate to={"/"} />;
   }
   return (
-    <div>
+    <section className="font-geist">
       <Header />
-      <Outlet />
-    </div>
+      <main className="pt-16">
+        <Outlet />
+      </main>
+    </section>
   );
 };
 
