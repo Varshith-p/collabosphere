@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import { logEvents } from "./logEvents";
+import { logEvents } from "./logEvents.js";
 
 const errorHandler = (err, req, res, next) => {
   logEvents(`${err.name}: ${err.message}`, "errLog.txt");

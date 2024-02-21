@@ -1,64 +1,41 @@
-import {
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  IconButton,
-  Avatar,
-  Typography,
-} from "@material-tailwind/react";
 import { BellIcon, ClockIcon } from "@heroicons/react/24/outline";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { useState } from "react";
+
+const notifications = ["New Project is created", "New task is assigned"];
 
 const NotificationMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleChange = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <Menu>
-      <MenuHandler>
-        <IconButton variant="text">
+    <Popover open={isOpen} onOpenChange={handleChange}>
+      <PopoverTrigger>
+        <div className="relative">
+          <div className="w-2 h-2 rounded-full bg-primary absolute right-0.5 top-0.5"></div>
           <BellIcon className="h-6 w-6" />
-        </IconButton>
-      </MenuHandler>
-      <MenuList className="flex flex-col gap-2">
-        <MenuItem className="flex items-center gap-4 py-2 pr-8 pl-2">
-          <Avatar
-            variant="circular"
-            alt="tania andrew"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-          />
-          <div className="flex flex-col gap-1">
-            <Typography variant="small" color="gray" className="font-normal">
-              <span className="font-medium text-blue-gray-900">Tania</span> send
-              you a message
-            </Typography>
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 text-xs text-gray-600"
-            >
-              <ClockIcon className="h-3 w-3" />
-              13 minutes ago
-            </Typography>
+        </div>
+      </PopoverTrigger>
+      <PopoverContent className="w-[240px] mr-10 flex flex-col gap-1 text-sm 2xl:text-base font-geist font-light">
+        {notifications.map((notification, index) => (
+          <div
+            key={index}
+            className="p-2 cursor-pointer hover:bg-primary-foreground rounded"
+          >
+            <span>{notification}</span>
+            <span className="flex items-center gap-1 text-xs 2xl:text-sm">
+              <ClockIcon className="w-3 h-3" /> 13 minutes ago
+            </span>
           </div>
-        </MenuItem>
-        <MenuItem className="flex items-center gap-4 py-2 pr-8 pl-2">
-          <Avatar
-            variant="circular"
-            alt="natali craig"
-            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1061&q=80"
-          />
-          <div className="flex flex-col gap-1">
-            <Typography variant="small" color="gray" className="font-normal">
-              <span className="font-medium text-blue-gray-900">Natali</span>{" "}
-              reply to your email
-            </Typography>
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 text-xs text-gray-600"
-            >
-              <ClockIcon className="h-3 w-3" />a hour ago
-            </Typography>
-          </div>
-        </MenuItem>
-      </MenuList>
-    </Menu>
+        ))}
+      </PopoverContent>
+    </Popover>
   );
 };
 

@@ -1,0 +1,10 @@
+20240221	21:58:30	ac1b81ce-df3e-4223-8254-2e7b74b567df	OPTIONS	http://localhost:5173	/api/v1/auth/login
+20240221	21:58:30	cbed716c-b9f8-44d6-8faf-f4463890fe37	POST	http://localhost:5173	/api/v1/auth/login
+20240221	22:21:37	238e0295-624f-47ae-9c25-4d1a55859150	OPTIONS	http://localhost:5173	/api/v1/auth/register
+20240221	22:21:37	31d54489-fd36-4c11-b9af-8a48fdd9cba7	POST	http://localhost:5173	/api/v1/auth/register
+20240221	22:23:47	fa73101d-de4a-497d-9510-c5e9b0bde9bc	OPTIONS	http://localhost:5173	/api/v1/auth/login
+20240221	22:23:47	e663191a-ba24-4930-a9de-9ea1ae78f130	POST	http://localhost:5173	/api/v1/auth/login
+20240221	23:58:51	8cf07bac-9f7a-4271-9461-191df94e1913	OPTIONS	http://localhost:5173	/api/v1/auth/login
+20240221	23:58:51	4247480a-157a-4026-b850-e90c7643650c	POST	http://localhost:5173	/api/v1/auth/login
+20240222	00:00:22	51396f43-196f-4238-a79e-ce5ba1286276	OPTIONS	http://localhost:5173	/api/v1/auth/login
+20240222	00:00:22	47e1597c-5145-4fb3-a8fa-d034df6ae830	POST	http://localhost:5173	/api/v1/auth/login

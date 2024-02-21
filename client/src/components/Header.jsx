@@ -1,44 +1,53 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { Cog6ToothIcon } from "@heroicons/react/24/outline";
-// import NotificationMenu from "./NotificationMenu";
-// import ProfileMenu from "./ProfileMenu";
-import { Link } from "react-router-dom";
+import { FolderKanban, NotepadText, Users } from "lucide-react";
+import NotificationMenu from "./NotificationMenu";
+import ProfileMenu from "./ProfileMenu";
+import { Link, useLocation } from "react-router-dom";
+
+const navLinks = [
+  {
+    name: "Your Work",
+    link: "/user/your-work",
+    icon: <NotepadText size={20} />,
+  },
+  {
+    name: "Projects",
+    link: "/user/projects",
+    icon: <FolderKanban size={20} />,
+  },
+  { name: "Teams", link: "/user/teams", icon: <Users size={20} /> },
+];
 
 const Header = () => {
+  const { pathname } = useLocation();
+
   return (
-    <header className="fixed w-screen z-50 bg-white py-4 px-4 md:px-8 border-b flex items-center justify-between shadow-md">
-      <div className="flex items-center gap-x-6">
-        <h1 className="font-medium text-xl cursor-pointer">CollaboSphere</h1>
-        <div className="hidden md:flex md:items-center gap-x-3">
-          <nav className="flex gap-x-6 h-auto font-medium text-sm text-gray-800">
-            <Link className="hover:text-gray-900">Your work</Link>
-            <Link className="hover:text-gray-900">Projects</Link>
-            <Link className="hover:text-gray-900">Teams</Link>
-            <Link className="hover:text-gray-900">Recent</Link>
-          </nav>
-          <div className="hidden md:block font-medium text-sm">
-            <button className="bg-primary text-white px-3 py-1 rounded-md">
-              Create
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="flex items-center gap-x-2 md:gap-x-4">
-        <form
-          action=""
-          className="border text-sm hidden border-gray-500 lg:flex items-center gap-x-1 bg-white rounded-md px-2 py-1"
-        >
-          <MagnifyingGlassIcon className="h-4 w-4 text-gray-800" />
-          <input
-            type="text"
-            className="focus:outline-none focus:border-0"
-            placeholder="Search"
-          />
-          <button hidden>Search</button>
-        </form>
-        {/* <NotificationMenu /> */}
-        <Cog6ToothIcon className="cursor-pointer w-6 h-6" />
-        {/* <ProfileMenu /> */}
+    <header className="fixed w-screen font-geist z-30 bg-[#FAFAFA] h-16 px-4 md:px-8 border-b border-[#EEEEFF] flex items-center justify-between">
+      <Link
+        to="/user/your-work"
+        className="font-medium text-2xl cursor-pointer flex gap-2 items-center"
+      >
+        <img src="/logo.svg" alt="logo" className="w-7 h-7" />
+        CollaboSphere
+      </Link>
+      <nav className="hidden md:flex flex-1 justify-center gap-5 text-gray-800 h-full items-center">
+        {navLinks.map((navLink, index) => (
+          <Link
+            to={navLink.link}
+            key={index}
+            className={`flex h-full items-center px-[10px] gap-[10px] border-b-2 ${
+              pathname.startsWith(navLink.link)
+                ? "border-primary"
+                : "text-[#61656C] border-transparent"
+            }`}
+          >
+            {navLink.icon}
+            <span>{navLink.name}</span>
+          </Link>
+        ))}
+      </nav>
+      <div className="flex gap-4">
+        <NotificationMenu />
+        <ProfileMenu />
       </div>
     </header>
   );

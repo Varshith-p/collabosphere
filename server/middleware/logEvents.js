@@ -5,9 +5,14 @@ import fs from "fs";
 import fsPromises from "fs/promises";
 import path from "path";
 
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 export const logEvents = async (message, logName) => {
-  const dateTime = `${format(new Date(), "yyyyMMDD\tHH:mm:ss")}`;
-  const logItem = `${dateTime}\t${uuid()}\t${message}`;
+  const dateTime = `${format(new Date(), "yyyyMMdd\tHH:mm:ss")}`;
+  const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
 
   try {
     if (!fs.existsSync(path.join(__dirname, "..", "logs"))) {
