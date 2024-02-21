@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 
 const Landing = () => {
   return (
-    <div className="">
+    <div className="font-geist">
       <header className="fixed inset-x-0 py-4 px-8 border-b flex items-center justify-between">
         <h1 className="font-medium text-2xl">CollaboSphere</h1>
         <Link

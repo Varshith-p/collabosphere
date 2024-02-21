@@ -1,11 +1,5 @@
 // import logo from "../assets/react.svg";
 import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemPrefix,
-} from "@material-tailwind/react";
-import {
   Bars3BottomLeftIcon,
   ChatBubbleOvalLeftIcon,
   Cog6ToothIcon,
@@ -27,7 +21,7 @@ const MobileSidebar = () => {
         onClick={openDrawer}
         className="md:hidden cursor-pointer w-6 h-6"
       />
-      <Drawer open={open} onClose={closeDrawer}>
+      {/* <Drawer open={open} onClose={closeDrawer}>
         <div className="flex justify-between items-center pr-8">
           <div className="mb-2 flex items-center gap-4 p-4">
             <img
@@ -78,7 +72,7 @@ const MobileSidebar = () => {
             Settings
           </ListItem>
         </List>
-      </Drawer>
+      </Drawer> */}
     </>
   );
 };

@@ -2,7 +2,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { getTasksGroupedbyColumns } from "../utils/columns";
 import Column from "./Column";
 import { useState } from "react";
-import { Avatar } from "@material-tailwind/react";
+// import { Avatar } from "@material-tailwind/react";
 import { MagnifyingGlassIcon, UserPlusIcon } from "@heroicons/react/24/outline";
 import MobileSidebar from "./MobileSidebar";
 
@@ -86,7 +86,7 @@ const Board = () => {
           <button hidden>Search</button>
         </form>
         <div className="flex -space-x-4">
-          <Avatar
+          {/* <Avatar
             variant="circular"
             alt="user 1"
             className="border-2 border-white cursor-pointer w-8 h-8"
@@ -103,7 +103,7 @@ const Board = () => {
             alt="user 5"
             className="border-2 border-white cursor-pointer w-8 h-8"
             src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80"
-          />
+          /> */}
         </div>
         <div className="w-8 h-8 text-gray-600 rounded-full bg-gray-200 flex justify-center items-center cursor-pointer">
           <UserPlusIcon className="w-6 h-6" />

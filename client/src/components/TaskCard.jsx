@@ -5,12 +5,12 @@ import {
   UserIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-import {
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-} from "@material-tailwind/react";
+// import {
+//   Menu,
+//   MenuHandler,
+//   MenuList,
+//   MenuItem,
+// } from "@material-tailwind/react";
 
 const TaskCard = ({
   id,
@@ -29,10 +29,10 @@ const TaskCard = ({
     >
       <div className="flex justify-between items-center px-5 py-3">
         <p className="font-normal">{task.title}</p>
-        <Menu>
+        {/* <Menu>
           <MenuHandler>
             <button className="">
-              {/* <XCircleIcon className="ml-5 h-8 w-8" /> */}
+              {/* <XCircleIcon className="ml-5 h-8 w-8" /> 
               <EllipsisVerticalIcon className="h-5 w-5" />
             </button>
           </MenuHandler>
@@ -48,7 +48,7 @@ const TaskCard = ({
               Delete
             </MenuItem>
           </MenuList>
-        </Menu>
+        </Menu> */}
       </div>
     </div>
   );
