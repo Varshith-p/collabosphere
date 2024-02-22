@@ -6,12 +6,16 @@ export const register = asyncHandler(async (req, res) => {
   const { name, email, password, mobile } = req.body;
 
   if (!name || !email || !password || !mobile) {
-    throw new Error("Provide all values");
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Provide all values" });
   }
 
   const userAlreadyExists = await User.findOne({ email });
   if (userAlreadyExists) {
-    throw new Error("Email already registered");
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Email already registered" });
   }
 
   const user = await User.create(req.body);
@@ -26,16 +30,22 @@ export const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    throw new Error("Provide all values");
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Provide all values" });
   }
 
   const user = await User.findOne({ email }).select("+password");
   if (!user) {
-    throw new Error("Invalid credentials");
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "Invalid credentails" });
   }
   const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
-    throw new Error("Invalid credentials");
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "Invalid credentails" });
   }
   const token = user.createJWT();
   user.password = undefined;

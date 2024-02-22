@@ -3,13 +3,21 @@ import asyncHandler from "express-async-handler";
 import { StatusCodes } from "http-status-codes";
 
 export const createProject = asyncHandler(async (req, res) => {
+  const { userId } = req.user;
+  if (!userId) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "Unauthorized" });
+  }
   const { name } = req.body;
   if (!name) {
-    throw new Error("Provide the name");
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Provide project name" });
   }
   req.body.admin = req.user.userId;
   if (req.body.participants) {
-    req.body.participants.push(req.user.userId);
+    req.body.participants.unshift(req.user.userId);
   } else {
     req.body.participants = [req.user.userId];
   }
@@ -22,7 +30,9 @@ export const createProject = asyncHandler(async (req, res) => {
 export const getAllProjects = asyncHandler(async (req, res) => {
   const { userId } = req.user;
   if (!userId) {
-    throw new Error("Unauthorized");
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "Unauthorized" });
   }
   const projects = await Project.find({ participants: userId });
   return res

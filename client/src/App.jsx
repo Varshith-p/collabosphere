@@ -7,6 +7,7 @@ import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
 import ProtectedLayout from "./components/ProtectedLayout";
 import Register from "./pages/Register";
+import CreateProject from "./pages/CreateProject";
 
 function App() {
   return (
@@ -17,7 +18,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/user" element={<ProtectedLayout />}>
           <Route path="your-work" element={<Home />} />
-          <Route path="projects" element={<Projects />} />
+          <Route path="projects">
+            <Route index element={<Projects />} />
+            <Route path="new" element={<CreateProject />} />
+          </Route>
           <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
