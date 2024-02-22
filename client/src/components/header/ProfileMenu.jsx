@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/user/userSlice";
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const ProfileMenu = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,10 @@ const ProfileMenu = () => {
 
   return (
     <Popover open={isOpen} onOpenChange={handleChange}>
-      <PopoverTrigger>
-        <img src="/avatar.svg" alt="avatar" />
+      <PopoverTrigger className="flex items-center gap-2">
+        <img src="/avatar.svg" alt="avatar" className="w-8 h-8" />
+        <span className="font-medium text-lg">Varshith</span>
+        <ChevronDown />
       </PopoverTrigger>
       <PopoverContent className="w-[240px] mr-10 flex flex-col gap-1 text-sm 2xl:text-base font-geist font-light">
         <div className="flex items-center gap-2 p-2 cursor-pointer hover:bg-primary-foreground rounded">

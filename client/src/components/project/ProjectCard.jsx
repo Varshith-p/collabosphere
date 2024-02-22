@@ -2,8 +2,8 @@
 
 const ProjectCard = ({ project }) => {
   return (
-    <div className="w-full shadow border border-primary-foreground rounded cursor-pointer">
-      <div className="border-b border-primary-foreground flex flex-col gap-1 bg-[#FAFAFA] p-4">
+    <div className="w-full shadow border border-border-color rounded cursor-pointer">
+      <div className="border-b border-border-color flex flex-col gap-1 bg-[#FAFAFA] p-4">
         <h1 className="font-medium 2xl:text-lg">{project.name}</h1>
         <span className="text-xs 2xl:text-base text-[#61656C]">
           Software Project

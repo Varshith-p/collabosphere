@@ -6,7 +6,7 @@ import ProjectCard from "../project/ProjectCard";
 const Main = () => {
   return (
     <div className="py-6 px-[60px]">
-      <h1 className="text-2xl 2xl:text-3xl font-medium">Your Work</h1>
+      <h1 className="text-2xl 2xl:text-3xl font-medium">Hello, Varshith.</h1>
       <div className="py-4 flex justify-between">
         <h1 className="font-medium 2xl:text-xl text-gray-700">
           Recent Projects

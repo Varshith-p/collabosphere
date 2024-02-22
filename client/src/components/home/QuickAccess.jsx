@@ -9,30 +9,35 @@ const QuickAccess = () => {
           {tasks.length}
         </span>
       </div>
-      <div className="rounded border border-primary-foreground">
-        <table className="py-4 w-full table-auto overflow-auto ">
+      <div className="rounded-[6px] border border-border-color">
+        <table className="py-4 w-full text-sm 2xl:text-base">
           <thead>
-            <tr className="bg-[#FAFAFA]">
-              <th className="font-medium p-4 border-b text-left border-primary-foreground">
-                Issue
-              </th>
-              <th className="font-medium p-4 border-b border-primary-foreground">
-                Project
-              </th>
-              <th className="font-medium p-4 border-b text-right border-primary-foreground">
+            <tr className="bg-[#f6f8fa]">
+              <th className="font-medium px-4 py-2 text-left w-2/5">Issue</th>
+              <th className="font-medium px-4 py-2 text-left w-1/5">Project</th>
+              <th className="font-medium px-4 py-2 text-left w-1/5">Status</th>
+              <th className="font-medium px-4 py-2 text-right w-1/5">
                 Assigned by
               </th>
             </tr>
           </thead>
           <tbody>
             {tasks.map((task, index) => (
-              <tr key={index} className="">
-                <td className="p-4 cursor-pointer">{task.name}</td>
-                <td className="p-4 text-center">{task.project}</td>
-                <td className="p-4 text-right flex w-full justify-end">
-                  <p className="w-6 h-6 2xl:w-8 2xl:h-8 flex items-center justify-center text-sm 2xl:text-base bg-primary rounded-full text-white">
-                    {task.assignedBy[0]}
-                  </p>
+              <tr key={index} className="hover:bg-[#f6f8fa] rounded-[6px]">
+                <td className="px-4 py-2 border-t border-border-color cursor-pointer">
+                  {task.name}
+                </td>
+                <td className="px-4 py-2 border-t border-border-color text-cancelText">
+                  {task.project}
+                </td>
+                <td className="px-4 py-2 border-t border-border-color text-cancelText">
+                  {task.project}
+                </td>
+                <td className="px-4 py-2 border-t border-border-color flex w-full h-full justify-end">
+                  <div className="flex items-center gap-1 cursor-pointer">
+                    <img src="/avatar.svg" alt="avatar" className="w-6 h-6" />
+                    <p>{task.assignedBy}</p>
+                  </div>
                 </td>
               </tr>
             ))}

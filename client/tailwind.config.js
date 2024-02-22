@@ -37,6 +37,7 @@ module.exports = {
         },
         cancel: "#F1F1F1",
         cancelText: "#61656C",
+        "border-color": "#d0d7de",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",

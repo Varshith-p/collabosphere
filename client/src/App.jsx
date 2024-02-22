@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Project from "./pages/Project";
+import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
 import ProtectedLayout from "./components/ProtectedLayout";
 import Register from "./pages/Register";
@@ -17,7 +17,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/user" element={<ProtectedLayout />}>
           <Route path="your-work" element={<Home />} />
-          <Route path="projects" element={<Project />} />
+          <Route path="projects" element={<Projects />} />
           <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
