@@ -1,4 +1,4 @@
-import { Folders, KanbanSquare, NotepadText } from "lucide-react";
+import { Box, Folders, NotepadText } from "lucide-react";
 import NotificationMenu from "./NotificationMenu";
 import ProfileMenu from "./ProfileMenu";
 import { Link, useLocation } from "react-router-dom";
@@ -12,7 +12,7 @@ const navLinks = [
   {
     name: "Projects",
     link: "/user/projects",
-    icon: <KanbanSquare size={20} />,
+    icon: <Box size={20} />,
   },
   { name: "Directory", link: "/user/directory", icon: <Folders size={20} /> },
 ];

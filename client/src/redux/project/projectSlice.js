@@ -9,6 +9,7 @@ const initialState = {
   user: user ? JSON.parse(user) : null,
   token: token,
   users: [],
+  project: {},
   projects: [],
 };
 
@@ -19,6 +20,24 @@ export const getUsers = createAsyncThunk(
       const response = await axios.get("http://localhost:5000/api/v1/users", {
         headers: { Authorization: `Bearer ${token}` },
       });
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const getProject = createAsyncThunk(
+  "/user/projects/get/:id",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/projects/${payload.id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       return response.data;
     } catch (error) {
       if (!error?.response) {
@@ -78,6 +97,17 @@ const product = createSlice({
       state.users = payload.users;
     });
     builder.addCase(getUsers.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(getProject.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getProject.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.project = payload.project;
+    });
+    builder.addCase(getProject.rejected, (state) => {
       state.isLoading = false;
     });
 

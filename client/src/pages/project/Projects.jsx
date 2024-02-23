@@ -1,7 +1,7 @@
 import EmptyPage from "@/components/project/EmptyPage";
 import ProjectsContainer from "@/components/project/ProjectsContainer";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "./Loading";
+import Loading from "../Loading";
 import { useEffect } from "react";
 import { getProjects } from "@/redux/project/projectSlice";
 

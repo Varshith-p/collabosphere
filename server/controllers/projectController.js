@@ -27,6 +27,23 @@ export const createProject = asyncHandler(async (req, res) => {
     .json({ project, message: "Project created" });
 });
 
+export const getProject = asyncHandler(async (req, res) => {
+  const { userId } = req.user;
+  if (!userId) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "Unauthorized" });
+  }
+  const { id: projectId } = req.params;
+  const project = await Project.findOne({ _id: projectId });
+  if (!project) {
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ message: "Project not found" });
+  }
+  return res.status(StatusCodes.OK).json({ project, message: "Projects sent" });
+});
+
 export const getAllProjects = asyncHandler(async (req, res) => {
   const { userId } = req.user;
   if (!userId) {

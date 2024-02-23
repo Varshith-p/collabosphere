@@ -23,7 +23,7 @@ const ProfileMenu = () => {
     <Popover open={isOpen} onOpenChange={handleChange}>
       <PopoverTrigger className="flex items-center gap-2">
         <img src="/avatar.svg" alt="avatar" className="w-8 h-8" />
-        <span className="font-medium text-lg">Varshith</span>
+        <span>Varshith</span>
         <ChevronDown />
       </PopoverTrigger>
       <PopoverContent className="w-[240px] mr-10 flex flex-col gap-1 text-sm 2xl:text-base font-geist font-light">

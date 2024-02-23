@@ -1,10 +1,10 @@
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { getTasksGroupedbyColumns } from "../utils/columns";
-import Column from "./Column";
+import { getTasksGroupedbyColumns } from "../../utils/columns";
+import Column from "../../components/Column";
 import { useState } from "react";
 // import { Avatar } from "@material-tailwind/react";
 import { MagnifyingGlassIcon, UserPlusIcon } from "@heroicons/react/24/outline";
-import MobileSidebar from "./MobileSidebar";
+import MobileSidebar from "../../components/MobileSidebar";
 
 const Board = () => {
   const [columns, setColumns] = useState(getTasksGroupedbyColumns());
@@ -67,7 +67,7 @@ const Board = () => {
   };
 
   return (
-    <div className="w-screen pt-24 px-4 md:px-8 md:pl-72 md:max-w-7xl">
+    <div className="">
       <div className="flex gap-x-1 items-center pb-6">
         <MobileSidebar />
         <h1 className="font-medium text-lg md:text-lg">DEMO Board</h1>

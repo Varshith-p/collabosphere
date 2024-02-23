@@ -41,8 +41,8 @@ const ProjectsContainer = ({ projects }) => {
             <tbody>
               {projects.map((project, index) => (
                 <tr key={index} className="hover:bg-[#f6f8fa] rounded-[6px]">
-                  <td className="px-4 py-2 border-t border-border-color cursor-pointer">
-                    {project.name}
+                  <td className="px-4 py-2 border-t border-border-color cursor-pointer text-primary">
+                    <Link to={`${project._id}/board`}>{project.name}</Link>
                   </td>
                   <td className="px-4 py-2 border-t border-border-color text-cancelText">
                     {project.participants.length} Members

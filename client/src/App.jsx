@@ -1,13 +1,11 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
-import Login from "./pages/Login";
+import { Login, Register } from "./pages/auth";
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
 import ProtectedLayout from "./components/ProtectedLayout";
-import Register from "./pages/Register";
-import CreateProject from "./pages/CreateProject";
+import { Board, Project, Projects, CreateProject } from "./pages/project";
 
 function App() {
   return (
@@ -21,6 +19,9 @@ function App() {
           <Route path="projects">
             <Route index element={<Projects />} />
             <Route path="new" element={<CreateProject />} />
+            <Route path=":id" element={<Project />}>
+              <Route path="board" element={<Board />} />
+            </Route>
           </Route>
           <Route path="profile" element={<Profile />} />
         </Route>
