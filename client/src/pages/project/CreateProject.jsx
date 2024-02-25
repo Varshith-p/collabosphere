@@ -36,9 +36,14 @@ const CreateProject = () => {
     } else {
       payload = { name, visibility };
     }
-    const res = await dispatch(createProject(payload));
-    if (res.meta.requestStatus == "fulfilled") {
-      navigate("/user/projects", { replace: true });
+    try {
+      const res = await dispatch(createProject(payload));
+      if (res.meta.requestStatus == "fulfilled") {
+        navigate("/user/projects", { replace: true });
+      }
+    } catch (error) {
+      console.log(error);
+      alert(error);
     }
   };
 

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import TaskCard from "./TaskCard";
+import AddTaskModal from "./project/AddTaskModal";
 
 const Column = ({ id, tasks, index }) => {
   return (
@@ -17,21 +17,23 @@ const Column = ({ id, tasks, index }) => {
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
-                className={`p-2 rounded-md border border-gray-400 ${
-                  snapshot.isDraggingOver ? "bg-green-200" : "bg-gray-300/50"
+                className={`p-2 pb-4 rounded-[6px] w-[240px] 2xl:w-[280px] border border-[#EEEEFF] ${
+                  snapshot.isDraggingOver
+                    ? "bg-primary-foreground"
+                    : "bg-[#FAFAFA]"
                 }`}
               >
-                <h2 className="flex justify-between font-medium text-sm p-2">
+                <h2 className="flex justify-between font-medium text-sm p-2 text-cancelText">
                   {id}
-                  <span className="text-gray-500 bg-white rounded-full font-normal px-2 py-1 text-sm">
+                  <span className="text-cancelText bg-cancel rounded-full font-normal w-5 h-5 p-1 flex items-center justify-center text-sm">
                     {tasks.length}
                   </span>
                 </h2>
-                <div className="space-y-2">
+                <div className="flex flex-col gap-y-2">
                   {tasks.map((task, index) => (
                     <Draggable
-                      key={task.id}
-                      draggableId={task.id.toString()}
+                      key={task._id}
+                      draggableId={task._id.toString()}
                       index={index}
                     >
                       {(provided) => (
@@ -46,13 +48,8 @@ const Column = ({ id, tasks, index }) => {
                       )}
                     </Draggable>
                   ))}
-
                   {provided.placeholder}
-                  <div className="flex items-end justify-end p-2">
-                    <button className="text-green-500 hover:text-green-600">
-                      <PlusCircleIcon className="h-10 w-10" />
-                    </button>
-                  </div>
+                  {id == "Todo" && <AddTaskModal />}
                 </div>
               </div>
             )}

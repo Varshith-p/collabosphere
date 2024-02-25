@@ -35,7 +35,10 @@ export const getProject = asyncHandler(async (req, res) => {
       .json({ message: "Unauthorized" });
   }
   const { id: projectId } = req.params;
-  const project = await Project.findOne({ _id: projectId });
+  const project = await Project.findOne({ _id: projectId }).populate([
+    "tasks",
+    { path: "participants", select: "name" },
+  ]);
   if (!project) {
     return res
       .status(StatusCodes.NOT_FOUND)

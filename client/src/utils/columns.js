@@ -1,39 +1,16 @@
-const tasks = [
-  {
-    id: 1,
-    title: "Work it",
-    status: "Todo",
-  },
-  {
-    id: 2,
-    title: "Enchanted",
-    status: "In Progress",
-  },
-  {
-    id: 3,
-    title: "Wasted",
-    status: "Done",
-  },
-  {
-    id: 4,
-    title: "Hello Boy",
-    status: "Todo",
-  },
-  {
-    id: 5,
-    title: "Idiot",
-    status: "Done",
-  },
-];
-
-const getTasksGroupedbyColumns = () => {
-  const columns = tasks.reduce((acc, task) => {
-    if (!acc.get(task.status)) {
-      acc.set(task.status, { id: task.status, tasks: [] });
-    }
-    acc.get(task.status).tasks.push(task);
-    return acc;
-  }, new Map());
+const getTasksGroupedbyColumns = (tasks) => {
+  let columns;
+  if (tasks) {
+    columns = tasks.reduce((acc, task) => {
+      if (!acc.get(task.status)) {
+        acc.set(task.status, { id: task.status, tasks: [] });
+      }
+      acc.get(task.status).tasks.push(task);
+      return acc;
+    }, new Map());
+  } else {
+    columns = new Map();
+  }
 
   const columnTypes = ["Todo", "In Progress", "Done"];
   for (const columnType of columnTypes) {
@@ -53,7 +30,5 @@ const getTasksGroupedbyColumns = () => {
 
   return sortedColumns;
 };
-
-getTasksGroupedbyColumns();
 
 export { getTasksGroupedbyColumns };

@@ -22,8 +22,8 @@ const Project = () => {
   return (
     <div className="flex w-full h-[calc(100vh-64px)]">
       <Sidebar project={project} />
-      <div className="flex-[1_0_0]">
-        <Outlet />
+      <div className="flex-[1_0_0] overflow-auto">
+        <Outlet context={[project]} />
       </div>
       {/* <Board /> */}
     </div>

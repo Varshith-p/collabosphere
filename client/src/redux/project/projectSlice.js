@@ -85,6 +85,25 @@ export const createProject = createAsyncThunk(
   }
 );
 
+export const createTask = createAsyncThunk(
+  "/user/task/create",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/tasks",
+        payload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 const product = createSlice({
   name: "project",
   initialState: initialState,

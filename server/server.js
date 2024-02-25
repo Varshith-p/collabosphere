@@ -6,6 +6,7 @@ import errorHandler from "./middleware/errorHandler.js";
 import connectDB from "./db/connectDB.js";
 import authRouter from "./routes/authRoutes.js";
 import projectRouter from "./routes/projectRoutes.js";
+import taskRouter from "./routes/taskRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import { auth } from "./middleware/auth.js";
 
@@ -37,6 +38,7 @@ app.use(express.json());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", auth, userRouter);
 app.use("/api/v1/projects", auth, projectRouter);
+app.use("/api/v1/tasks", auth, taskRouter);
 
 // not-found
 app.all("*", (req, res) => {

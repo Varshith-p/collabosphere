@@ -1,13 +1,19 @@
+/* eslint-disable react/prop-types */
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { getTasksGroupedbyColumns } from "../../utils/columns";
 import Column from "../../components/Column";
 import { useState } from "react";
-// import { Avatar } from "@material-tailwind/react";
-import { MagnifyingGlassIcon, UserPlusIcon } from "@heroicons/react/24/outline";
-import MobileSidebar from "../../components/MobileSidebar";
+import { Link } from "react-router-dom";
+import { Search } from "lucide-react";
+import { useOutletContext } from "react-router-dom";
+import Loading from "../Loading";
+// import MobileSidebar from "../../components/MobileSidebar";
 
 const Board = () => {
-  const [columns, setColumns] = useState(getTasksGroupedbyColumns());
+  const [project] = useOutletContext();
+  const [columns, setColumns] = useState(
+    getTasksGroupedbyColumns(project?.tasks)
+  );
 
   const handleOnDragEnd = (result) => {
     const { destination, source, type } = result;
@@ -66,65 +72,74 @@ const Board = () => {
     }
   };
 
+  if (!project) {
+    return <Loading />;
+  }
+
   return (
-    <div className="">
-      <div className="flex gap-x-1 items-center pb-6">
-        <MobileSidebar />
-        <h1 className="font-medium text-lg md:text-lg">DEMO Board</h1>
+    <div className="px-[60px] py-6 flex flex-col gap-4">
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-1">
+          <p className="text-cancelText">
+            <Link to="/user/projects">Projects /</Link>
+            <span className="cursor-pointer"> {project.name}</span>
+          </p>
+          <h1 className="text-xl 2xl:text-2xl font-medium">Board</h1>
+        </div>
+        <button className="h-10 bg-primary text-white flex items-center rounded px-4">
+          Save
+        </button>
       </div>
-      <div className="flex md:gap-x-4">
-        <form
+      <div className="flex gap-3 items-center">
+        {/* <form
           action=""
           className="border border-gray-400 text-sm flex h-full items-center w-fit mb-4 gap-x-1 bg-white rounded-md px-2 py-1"
-        >
-          <MagnifyingGlassIcon className="h-4 w-4 text-gray-800" />
+        > */}
+        <div className="flex gap-2 w-[240px] 2xl:w-[280px] p-2 items-center h-10 border border-border-color rounded-[6px]">
+          {/* <MagnifyingGlassIcon className="h-4 w-4 text-gray-800" /> */}
+          <Search size={18} stroke="#61656C" />
           <input
             type="text"
-            className="focus:outline-none focus:border-0 w-36"
+            className="focus:outline-none focus:border-0 w-full"
             placeholder="Search"
           />
-          <button hidden>Search</button>
-        </form>
-        <div className="flex -space-x-4">
-          {/* <Avatar
-            variant="circular"
-            alt="user 1"
-            className="border-2 border-white cursor-pointer w-8 h-8"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-          />
-          <Avatar
-            variant="circular"
-            alt="user 2"
-            className="border-2 border-white cursor-pointer w-8 h-8"
-            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1061&q=80"
-          />
-          <Avatar
-            variant="circular"
-            alt="user 5"
-            className="border-2 border-white cursor-pointer w-8 h-8"
-            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80"
-          /> */}
         </div>
-        <div className="w-8 h-8 text-gray-600 rounded-full bg-gray-200 flex justify-center items-center cursor-pointer">
-          <UserPlusIcon className="w-6 h-6" />
-        </div>
-      </div>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="board" direction="horizontal" type="column">
-          {(provided) => (
-            <div
-              className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-auto pb-4"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {Array.from(columns.entries()).map(([id, column], index) => (
-                <Column key={id} id={id} tasks={column.tasks} index={index} />
-              ))}
-              {provided.placeholder}
+        {/* <button hidden>Search</button>   */}
+        {/* </form> */}
+        <div className="flex -space-x-5 items-center">
+          {project.participants?.map((participant, index) => (
+            <img
+              key={index}
+              src="/avatar.svg"
+              alt="avatar"
+              className="w-10 h-10"
+            />
+          ))}
+          {project.participants?.length > 3 && (
+            <div className="w-9 h-9 text-cancelText rounded-full border border-border-color bg-cancel flex justify-center items-center cursor-pointer">
+              +{project.participants?.length - 3}
             </div>
           )}
-        </Droppable>
-      </DragDropContext>
+        </div>
+      </div>
+      <div className="w-full">
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="board" direction="horizontal" type="column">
+            {(provided) => (
+              <div
+                className="flex gap-4"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {Array.from(columns.entries()).map(([id, column], index) => (
+                  <Column key={id} id={id} tasks={column.tasks} index={index} />
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
     </div>
   );
 };
