@@ -104,6 +104,43 @@ export const createTask = createAsyncThunk(
   }
 );
 
+export const updateTaskStatus = createAsyncThunk(
+  "/user/task/update-status",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:5000/api/v1/tasks/${payload._id}`,
+        payload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const deleteTask = createAsyncThunk(
+  "/user/task/delete",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/v1/tasks/${payload.id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 const product = createSlice({
   name: "project",
   initialState: initialState,

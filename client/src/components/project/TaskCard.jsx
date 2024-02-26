@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Trash } from "lucide-react";
+import DeleteTaskModal from "./DeleteTaskModal";
 
 const TaskCard = ({
   id,
@@ -16,13 +16,9 @@ const TaskCard = ({
       {...draggableProps}
       ref={innerRef}
     >
-      <div className="flex justify-between items-center p-2">
-        <p className="text-sm 2xl:text-base">{task.summary}</p>
-        <Trash
-          size={14}
-          onClick={() => console.log("first")}
-          className="text-cancelText cursor-pointer"
-        />
+      <div className="flex justify-between items-center">
+        <p className="text-sm 2xl:text-base p-2">{task.summary}</p>
+        <DeleteTaskModal id={task._id} />
       </div>
     </div>
   );

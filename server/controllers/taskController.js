@@ -1,7 +1,6 @@
 import Task from "../models/Task.js";
 import asyncHandler from "express-async-handler";
 import { StatusCodes } from "http-status-codes";
-import Project from "../models/Project.js";
 
 export const createTask = asyncHandler(async (req, res) => {
   const { userId } = req.user;
@@ -21,4 +20,27 @@ export const createTask = asyncHandler(async (req, res) => {
   return res
     .status(StatusCodes.CREATED)
     .json({ task, message: "Task created" });
+});
+
+export const updateTaskStatus = asyncHandler(async (req, res) => {
+  const { userId } = req.user;
+  if (!userId) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "Unauthorized" });
+  }
+  const task = await Task.findByIdAndUpdate(req.body._id, req.body);
+  return res.status(StatusCodes.OK).json({ task, message: "Task updated" });
+});
+
+export const deleteTask = asyncHandler(async (req, res) => {
+  const { userId } = req.user;
+  if (!userId) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "Unauthorized" });
+  }
+  const { id: taskId } = req.params;
+  const task = await Task.findByIdAndDelete(taskId);
+  return res.status(StatusCodes.OK).json({ task, message: "Task deleted" });
 });

@@ -4,7 +4,6 @@ import { StatusCodes } from "http-status-codes";
 
 export const register = asyncHandler(async (req, res) => {
   const { name, email, password, mobile } = req.body;
-
   if (!name || !email || !password || !mobile) {
     return res
       .status(StatusCodes.BAD_REQUEST)
@@ -28,7 +27,6 @@ export const register = asyncHandler(async (req, res) => {
 
 export const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-
   if (!email || !password) {
     return res
       .status(StatusCodes.BAD_REQUEST)

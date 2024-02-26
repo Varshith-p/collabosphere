@@ -54,7 +54,6 @@ const AddTaskModal = () => {
     try {
       const res = await dispatch(createTask(data));
       if (res.meta.requestStatus == "fulfilled") {
-        console.log("done");
         navigate(0);
       }
     } catch (error) {
@@ -68,13 +67,11 @@ const AddTaskModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="flex items-end justify-end pt-2 cursor-pointer">
-          <div className="bg-primary w-6 h-6 flex items-center justify-center rounded-full text-white">
-            <Plus size={16} />
-          </div>
+        <div className="bg-primary w-6 h-6 flex items-center justify-center rounded-full text-white cursor-pointer">
+          <Plus size={16} />
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] font-geist">
         <DialogHeader>
           <DialogTitle>Add Task</DialogTitle>
         </DialogHeader>
