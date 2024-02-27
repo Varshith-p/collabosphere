@@ -11,6 +11,7 @@ import {
   Projects,
   CreateProject,
   Details,
+  Access,
 } from "./pages/project";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path=":id" element={<Project />}>
               <Route path="board" element={<Board />} />
               <Route path="details" element={<Details />} />
+              <Route path="access" element={<Access />} />
             </Route>
           </Route>
           <Route path="profile" element={<Profile />} />

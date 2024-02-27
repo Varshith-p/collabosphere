@@ -19,7 +19,7 @@ const DeleteTaskModal = ({ id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const handleDelete = async () => {
     try {
