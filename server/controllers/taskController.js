@@ -29,7 +29,8 @@ export const updateTaskStatus = asyncHandler(async (req, res) => {
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "Unauthorized" });
   }
-  const task = await Task.findByIdAndUpdate(req.body._id, req.body);
+  const { id: taskId } = req.params;
+  const task = await Task.findByIdAndUpdate(taskId, req.body);
   return res.status(StatusCodes.OK).json({ task, message: "Task updated" });
 });
 

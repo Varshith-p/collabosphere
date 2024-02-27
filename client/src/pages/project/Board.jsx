@@ -2,10 +2,9 @@
 import { DragDropContext } from "react-beautiful-dnd";
 import { getTasksGroupedbyColumns } from "../../utils/columns";
 import Column from "../../components/project/Column";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useOutletContext } from "react-router-dom";
 import { Search } from "lucide-react";
-import { useOutletContext } from "react-router-dom";
 import Loading from "../Loading";
 import { updateTaskStatus } from "@/redux/project/projectSlice";
 import { useDispatch } from "react-redux";
@@ -17,6 +16,12 @@ const Board = () => {
   const [columns, setColumns] = useState(
     getTasksGroupedbyColumns(project?.tasks)
   );
+
+  useEffect(() => {
+    if (project) {
+      setColumns(getTasksGroupedbyColumns(project.tasks));
+    }
+  }, [project]);
 
   const handleOnDragEnd = async (result) => {
     const { destination, source } = result;
@@ -75,11 +80,11 @@ const Board = () => {
   return (
     <div className="px-[60px] py-6 flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <p className="text-cancelText">
+        <p className="text-cancelText text-sm">
           <Link to="/user/projects">Projects /</Link>
           <span className="cursor-pointer"> {project.name}</span>
         </p>
-        <h1 className="text-xl 2xl:text-2xl font-medium">Board</h1>
+        <h1 className="text-2xl 2xl:text-3xl font-medium">Board</h1>
       </div>
       <div className="flex gap-3 items-center">
         <div className="flex gap-2 w-[240px] 2xl:w-[280px] p-2 items-center h-10 border border-border-color rounded-[6px]">

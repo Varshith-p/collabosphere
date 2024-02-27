@@ -33,6 +33,7 @@ const AddTaskModal = () => {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [assignee, setAssignee] = useState({});
   const [summary, setSummary] = useState("");
   const [description, setDescription] = useState("");
@@ -65,18 +66,18 @@ const AddTaskModal = () => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger asChild>
         <div className="bg-primary w-6 h-6 flex items-center justify-center rounded-full text-white cursor-pointer">
           <Plus size={16} />
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] font-geist">
+      <DialogContent className="sm:max-w-[500px] font-geist">
         <DialogHeader>
           <DialogTitle>Add Task</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-4 py-4">
-          <div className="flex flex-col gap-2">
+          {/* <div className="flex flex-col gap-2">
             <label htmlFor="project" className="text-sm font-medium">
               <span className="text-[#D30A0A]">* </span>Project
             </label>
@@ -86,7 +87,7 @@ const AddTaskModal = () => {
             >
               {project.name}
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col gap-2">
             <label htmlFor="summary" className="text-sm font-medium">
               <span className="text-[#D30A0A]">* </span>Summary
@@ -158,8 +159,14 @@ const AddTaskModal = () => {
         </div>
         <DialogFooter>
           <button
+            onClick={() => setDialogOpen(false)}
+            className="bg-cancel text-cancelText p-2 rounded-[6px] flex items-center justify-center font-medium"
+          >
+            Cancel
+          </button>
+          <button
             onClick={handleSubmit}
-            className="bg-primary text-white p-2 rounded-[6px] w-[140px] flex items-center justify-center"
+            className="bg-primary text-white p-2 rounded-[6px] flex items-center justify-center font-medium"
           >
             {isLoading ? <Loading /> : "Create task"}
           </button>

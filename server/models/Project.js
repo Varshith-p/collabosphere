@@ -7,6 +7,10 @@ const ProjectSchema = new mongoose.Schema(
       required: [true, "Provide project name..."],
       trim: true,
     },
+    description: {
+      type: String,
+      trim: true,
+    },
     participants: [
       {
         type: mongoose.Types.ObjectId,

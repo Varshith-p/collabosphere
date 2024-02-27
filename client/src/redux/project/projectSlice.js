@@ -85,6 +85,25 @@ export const createProject = createAsyncThunk(
   }
 );
 
+export const updateProject = createAsyncThunk(
+  "/user/project/update",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:5000/api/v1/projects/${payload._id}`,
+        payload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 export const createTask = createAsyncThunk(
   "/user/task/create",
   async (payload, { rejectWithValue }) => {
@@ -149,8 +168,8 @@ const product = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getUsers.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
       state.users = payload.users;
+      state.isLoading = false;
     });
     builder.addCase(getUsers.rejected, (state) => {
       state.isLoading = false;
@@ -160,8 +179,8 @@ const product = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getProject.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
       state.project = payload.project;
+      state.isLoading = false;
     });
     builder.addCase(getProject.rejected, (state) => {
       state.isLoading = false;
@@ -171,8 +190,8 @@ const product = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getProjects.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
       state.projects = payload.projects;
+      state.isLoading = false;
     });
     builder.addCase(getProjects.rejected, (state) => {
       state.isLoading = false;
@@ -185,6 +204,17 @@ const product = createSlice({
       state.isLoading = false;
     });
     builder.addCase(createProject.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(updateProject.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateProject.fulfilled, (state, { payload }) => {
+      state.project = payload.project;
+      state.isLoading = false;
+    });
+    builder.addCase(updateProject.rejected, (state) => {
       state.isLoading = false;
     });
   },

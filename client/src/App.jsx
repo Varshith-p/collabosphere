@@ -5,7 +5,13 @@ import { Login, Register } from "./pages/auth";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import ProtectedLayout from "./components/ProtectedLayout";
-import { Board, Project, Projects, CreateProject } from "./pages/project";
+import {
+  Board,
+  Project,
+  Projects,
+  CreateProject,
+  Details,
+} from "./pages/project";
 
 function App() {
   return (
@@ -21,6 +27,7 @@ function App() {
             <Route path="new" element={<CreateProject />} />
             <Route path=":id" element={<Project />}>
               <Route path="board" element={<Board />} />
+              <Route path="details" element={<Details />} />
             </Route>
           </Route>
           <Route path="profile" element={<Profile />} />

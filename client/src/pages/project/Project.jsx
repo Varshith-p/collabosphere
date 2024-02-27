@@ -1,6 +1,6 @@
 // import Board from "@/components/Board";
-import Sidebar from "@/components/Sidebar";
-import { getProject } from "@/redux/project/projectSlice";
+import Sidebar from "@/components/project/Sidebar";
+import { getProject, getUsers } from "@/redux/project/projectSlice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useParams } from "react-router-dom";
@@ -13,6 +13,7 @@ const Project = () => {
 
   useEffect(() => {
     dispatch(getProject({ id }));
+    dispatch(getUsers());
   }, [dispatch, id]);
 
   if (isLoading) {
@@ -25,7 +26,6 @@ const Project = () => {
       <div className="flex-[1_0_0] overflow-auto">
         <Outlet context={[project]} />
       </div>
-      {/* <Board /> */}
     </div>
   );
 };

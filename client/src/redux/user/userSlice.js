@@ -62,11 +62,11 @@ const userSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(login.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
       state.user = payload.user;
       state.token = payload.token;
       localStorage.setItem("user", JSON.stringify(payload.user));
       localStorage.setItem("token", payload.token);
+      state.isLoading = false;
     });
     builder.addCase(login.rejected, (state) => {
       state.isLoading = false;
@@ -76,15 +76,14 @@ const userSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(register.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
       state.user = payload.user;
       state.token = payload.token;
       localStorage.setItem("user", JSON.stringify(payload.user));
       localStorage.setItem("token", payload.token);
-    });
-    builder.addCase(register.rejected, (state, { payload }) => {
       state.isLoading = false;
-      console.log(payload);
+    });
+    builder.addCase(register.rejected, (state) => {
+      state.isLoading = false;
     });
   },
 });

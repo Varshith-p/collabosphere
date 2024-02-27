@@ -12,8 +12,9 @@ const CreateProject = () => {
 
   const [query, setQuery] = useState("");
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
-  const [visibility, setVisibility] = useState("private");
+  const [visibility, setVisibility] = useState("Private");
 
   const handleSelect = (user) => {
     if (selectedUsers.includes(user)) return;
@@ -32,9 +33,9 @@ const CreateProject = () => {
     let payload = {};
     if (selectedUsers.length > 0) {
       const participants = selectedUsers.map((user) => user.id);
-      payload = { name, participants, visibility };
+      payload = { name, participants, visibility, description };
     } else {
-      payload = { name, visibility };
+      payload = { name, visibility, description };
     }
     try {
       const res = await dispatch(createProject(payload));
@@ -87,6 +88,18 @@ const CreateProject = () => {
             />
           </div>
           <div className="flex flex-col gap-3">
+            <label className="font-medium">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="p-3 rounded-[6px] h-32 border border-border-color bg-white focus:outline-none"
+            ></textarea>
+          </div>
+        </div>
+        <div className="flex flex-col gap-6 w-full">
+          <div className="flex flex-col gap-3">
             <label className="font-medium">Participants</label>
             <input
               type="text"
@@ -135,8 +148,6 @@ const CreateProject = () => {
               ))}
             </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-3">
             <p className="font-medium">Visibility</p>
             <div className="flex items-center h-10 gap-10">

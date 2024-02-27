@@ -20,6 +20,7 @@ const DeleteTaskModal = ({ id }) => {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState();
+  const [dialogOpen, setDialogOpen] = useState(false);
   const handleDelete = async () => {
     try {
       setIsLoading(true);
@@ -35,7 +36,7 @@ const DeleteTaskModal = ({ id }) => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger asChild>
         <div className="p-2 flex items-center justify-center cursor-pointer">
           <Trash size={14} className="text-cancelText" />
@@ -53,7 +54,10 @@ const DeleteTaskModal = ({ id }) => {
           <p className="text-cancelText">You can&apos;t undo this action</p>
         </div>
         <DialogFooter>
-          <button className="bg-cancel text-cancelText focus:outline-none flex w-full items-center justify-center h-10 font-medium rounded-[6px]">
+          <button
+            onClick={() => setDialogOpen(false)}
+            className="bg-cancel text-cancelText focus:outline-none flex w-full items-center justify-center h-10 font-medium rounded-[6px]"
+          >
             Cancel
           </button>
           <button

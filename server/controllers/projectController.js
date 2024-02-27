@@ -37,7 +37,7 @@ export const getProject = asyncHandler(async (req, res) => {
   const { id: projectId } = req.params;
   const project = await Project.findOne({ _id: projectId }).populate([
     "tasks",
-    { path: "participants", select: "name" },
+    { path: "participants", select: "name email" },
   ]);
   if (!project) {
     return res
@@ -54,8 +54,37 @@ export const getAllProjects = asyncHandler(async (req, res) => {
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "Unauthorized" });
   }
-  const projects = await Project.find({ participants: userId });
+  const projects = await Project.find({ participants: userId }).populate(
+    "tasks"
+  );
   return res
     .status(StatusCodes.OK)
     .json({ projects, message: "Projects sent" });
+});
+
+export const updateProject = asyncHandler(async (req, res) => {
+  const { userId } = req.user;
+  if (!userId) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "Unauthorized" });
+  }
+  const { name } = req.body;
+  const { id: projectId } = req.params;
+  if (!name) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Provide project name" });
+  }
+  await Project.findByIdAndUpdate(projectId, req.body, {
+    runValidators: true,
+    new: true,
+  });
+  const project = await Project.findOne({ _id: projectId }).populate([
+    "tasks",
+    { path: "participants", select: "name email" },
+  ]);
+  return res
+    .status(StatusCodes.OK)
+    .json({ project, message: "Project updated" });
 });
