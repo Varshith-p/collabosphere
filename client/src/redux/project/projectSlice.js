@@ -11,6 +11,7 @@ const initialState = {
   users: [],
   project: {},
   projects: [],
+  resources: [],
 };
 
 export const getUsers = createAsyncThunk(
@@ -160,6 +161,25 @@ export const deleteTask = createAsyncThunk(
   }
 );
 
+export const uploadFile = createAsyncThunk(
+  "/user/file/upload",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/v1/resources/?projectId=${payload.id}`,
+        payload.formData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 const product = createSlice({
   name: "project",
   initialState: initialState,
@@ -180,6 +200,7 @@ const product = createSlice({
     });
     builder.addCase(getProject.fulfilled, (state, { payload }) => {
       state.project = payload.project;
+      state.resources = payload.resources;
       state.isLoading = false;
     });
     builder.addCase(getProject.rejected, (state) => {

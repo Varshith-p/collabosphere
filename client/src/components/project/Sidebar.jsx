@@ -28,13 +28,13 @@ const Sidebar = ({ project }) => {
           <span>Board</span>
         </Link>
         <Link
-          to="files"
+          to="resources"
           className={`${
-            pathname.includes("/files") && "bg-primary-foreground"
+            pathname.includes("/resources") && "bg-primary-foreground"
           } hover:bg-primary-foreground rounded-[6px] p-2 flex gap-2 items-center`}
         >
           <File size={20} />
-          <span>Files</span>
+          <span>Resources</span>
         </Link>
         <Link
           to="chat"

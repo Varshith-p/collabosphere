@@ -1,6 +1,8 @@
 import Project from "../models/Project.js";
 import asyncHandler from "express-async-handler";
 import { StatusCodes } from "http-status-codes";
+import Resource from "../models/Resource.js";
+import { getUrl } from "../utils/s3.js";
 
 export const createProject = asyncHandler(async (req, res) => {
   const { userId } = req.user;
@@ -39,12 +41,20 @@ export const getProject = asyncHandler(async (req, res) => {
     "tasks",
     { path: "participants", select: "name email" },
   ]);
+  const resources = await Resource.find({ project: projectId })
+    .populate("uploadedBy", "name")
+    .lean();
+  for (const resource of resources) {
+    resource.url = await getUrl(`${projectId}/${resource.name}`);
+  }
   if (!project) {
     return res
       .status(StatusCodes.NOT_FOUND)
       .json({ message: "Project not found" });
   }
-  return res.status(StatusCodes.OK).json({ project, message: "Projects sent" });
+  return res
+    .status(StatusCodes.OK)
+    .json({ project, resources, message: "Projects sent" });
 });
 
 export const getAllProjects = asyncHandler(async (req, res) => {

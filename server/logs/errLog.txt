@@ -3,3 +3,10 @@
 20240224	00:22:52	10de44dc-f6b3-46a2-80e9-f0e824d9605f	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Project"
 20240224	00:23:00	570196be-5ef6-4438-a9e5-0bbeb711c861	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Project"
 20240224	00:23:26	332400c4-7c3f-4215-b866-eeb5412e1f5f	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Project"
+20240229	22:20:57	45b49d0e-c98d-4037-9bef-987536bb6cac	TypeError: Cannot destructure property 'userId' of 'req.user' as it is undefined.
+20240229	22:22:26	fda2fe93-2eb9-46e1-aec4-067752b1a4b2	ReferenceError: id is not defined
+20240229	22:23:04	c17b383b-823c-49c9-b5f3-8e0e02b3f436	ReferenceError: id is not defined
+20240229	22:23:27	490adab4-a5d3-4702-8678-01ccea4bc509	Error: Region is missing
+20240229	22:39:01	0c79e65f-0160-4457-8fea-b284a72dfc14	TypeError: resource.save is not a function
+20240229	22:43:23	b6492ef7-e460-4102-ad45-af1fc893e5bd	TypeError: resource.save is not a function
+20240229	22:45:54	a31e233f-4ac6-41f7-941b-351fa449e36b	TypeError: resource.save is not a function

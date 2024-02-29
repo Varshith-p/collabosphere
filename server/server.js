@@ -1,17 +1,27 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import multer from "multer";
 import { logger } from "./middleware/logEvents.js";
 import errorHandler from "./middleware/errorHandler.js";
 import connectDB from "./db/connectDB.js";
 import authRouter from "./routes/authRoutes.js";
 import projectRouter from "./routes/projectRoutes.js";
 import taskRouter from "./routes/taskRoutes.js";
+import resourceRouter from "./routes/resourceRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import { auth } from "./middleware/auth.js";
 
 dotenv.config();
 const app = express();
+
+const storage = multer.memoryStorage();
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 25 * 1024 * 1024, // 25MB
+  },
+});
 
 // logger middleware
 app.use(logger);
@@ -39,6 +49,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", auth, userRouter);
 app.use("/api/v1/projects", auth, projectRouter);
 app.use("/api/v1/tasks", auth, taskRouter);
+app.use("/api/v1/resources", auth, upload.single("file"), resourceRouter);
 
 // not-found
 app.all("*", (req, res) => {

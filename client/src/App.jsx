@@ -12,6 +12,7 @@ import {
   CreateProject,
   Details,
   Access,
+  Files,
 } from "./pages/project";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path="new" element={<CreateProject />} />
             <Route path=":id" element={<Project />}>
               <Route path="board" element={<Board />} />
+              <Route path="resources" element={<Files />} />
               <Route path="details" element={<Details />} />
               <Route path="access" element={<Access />} />
             </Route>
