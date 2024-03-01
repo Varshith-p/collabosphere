@@ -36,8 +36,10 @@ const Login = () => {
   };
 
   return (
-    <section className="font-geist flex w-screen h-screen">
-      <div className="w-[460px] 2xl:w-[540px] flex flex-col justify-center px-8 lg:px-[60px] py-10 2xl:justify-center gap-3 md:gap-8 overflow-y-auto">
+    // <section className="font-geist flex w-screen h-screen">
+    <section className="font-geist flex w-screen h-screen items-center bg-primary-foreground">
+      {/* <div className="w-[460px] 2xl:w-[540px] flex flex-col justify-center px-8 lg:px-[60px] py-10 2xl:justify-center gap-3 md:gap-8 overflow-y-auto"> */}
+      <div className="w-[460px] 2xl:w-[540px] flex mx-auto h-[90%] bg-white border border-border-color rounded-[6px] 2xl:h-4/5 flex-col justify-center px-8 lg:px-[60px] py-10 gap-3 md:gap-8 overflow-y-auto">
         <h1 className="text-3xl font-medium flex gap-2 items-center">
           <img src="./logo.svg" alt="logo" className="w-8 h-8" />
           Collabosphere
@@ -91,7 +93,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <div className="bg-primary-foreground flex-[1_0_0]"></div>
+      {/* <div className="bg-primary-foreground flex-[1_0_0]"></div> */}
     </section>
   );
 };

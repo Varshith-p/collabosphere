@@ -94,7 +94,7 @@ const UploadFileModal = () => {
             onClick={handleSubmit}
             className="bg-primary text-white p-2 rounded-[6px] flex items-center justify-center font-medium"
           >
-            {isLoading ? <Loading /> : "Create task"}
+            {isLoading ? <Loading /> : "Upload File"}
           </button>
         </DialogFooter>
       </DialogContent>

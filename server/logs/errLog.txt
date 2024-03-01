@@ -10,3 +10,15 @@
 20240229	22:39:01	0c79e65f-0160-4457-8fea-b284a72dfc14	TypeError: resource.save is not a function
 20240229	22:43:23	b6492ef7-e460-4102-ad45-af1fc893e5bd	TypeError: resource.save is not a function
 20240229	22:45:54	a31e233f-4ac6-41f7-941b-351fa449e36b	TypeError: resource.save is not a function
+20240229	23:44:20	a8330d4e-9d28-4948-90a7-1e5615e5a5ae	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240229	23:44:20	9c64b579-3ba2-4bc8-b413-0d6b52f819b4	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240229	23:44:25	5facb534-5609-41f1-804d-6fbc79fa8301	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240229	23:44:25	583c83e5-b1a2-4468-98ae-eeca743f137f	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240229	23:44:33	de6addba-6f97-4697-9609-2c382be991e7	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240229	23:44:34	0ba88d98-f82b-4000-baca-0d3f41ea1b0b	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240229	23:44:48	2a728416-6200-43cf-90e4-260b760a24c3	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240229	23:44:48	45eea569-62df-4a7d-a493-06de15ba0cc4	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240301	00:20:20	b15ffd40-2b0a-427d-af53-653b7712aeda	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240301	00:20:22	6032798c-88c2-4511-91ec-73ee1e61e592	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240301	00:20:22	14b2a87c-ecd2-4baf-8314-6e47a9680106	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240301	00:20:22	46374b51-f4f3-4802-8317-8bb7e4cf4ac8	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net

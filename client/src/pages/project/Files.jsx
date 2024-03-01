@@ -1,6 +1,6 @@
+import DeleteFileModal from "@/components/project/DeleteFileModal";
 import UploadFileModal from "@/components/project/UploadFileModal";
 import formatDate from "@/utils/formatDate";
-import { MoreHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link, useOutletContext } from "react-router-dom";
 
@@ -35,7 +35,7 @@ const Files = () => {
                 className="hover:bg-[#f6f8fa] grid grid-cols-6 items-center justify-between border-t border-border-color"
               >
                 <p className="cursor-pointer text-primary col-span-2 py-2 px-4">
-                  <Link to={`${project._id}/board`}>{resource.name}</Link>
+                  <Link to={`${resource._id}`}>{resource.name}</Link>
                 </p>
                 <div className="col-span-2 py-2 px-4">
                   <div className="flex items-center gap-1 cursor-pointer">
@@ -46,9 +46,13 @@ const Files = () => {
                 <p className=" text-cancelText py-2 px-4">
                   {formatDate(resource.updatedAt)}
                 </p>
-                <p className=" text-cancelText justify-self-end cursor-pointer py-2 px-4">
-                  <MoreHorizontal />
-                </p>
+                <div className=" text-cancelText justify-self-end cursor-pointer py-2 px-4">
+                  <DeleteFileModal
+                    name={resource.name}
+                    fileId={resource._id}
+                    id={project._id}
+                  />
+                </div>
               </div>
             ))}
           </div>

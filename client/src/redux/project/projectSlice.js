@@ -12,6 +12,7 @@ const initialState = {
   project: {},
   projects: [],
   resources: [],
+  resource: {},
 };
 
 export const getUsers = createAsyncThunk(
@@ -180,6 +181,42 @@ export const uploadFile = createAsyncThunk(
   }
 );
 
+export const getFile = createAsyncThunk(
+  "/user/file/get",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/resources/${payload.fileId}?projectId=${payload.id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const deleteFile = createAsyncThunk(
+  "/user/file/delete",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/v1/resources/${payload.fileId}?projectId=${payload.id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 const product = createSlice({
   name: "project",
   initialState: initialState,
@@ -236,6 +273,17 @@ const product = createSlice({
       state.isLoading = false;
     });
     builder.addCase(updateProject.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(getFile.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getFile.fulfilled, (state, { payload }) => {
+      state.resource = payload.resource;
+      state.isLoading = false;
+    });
+    builder.addCase(getFile.rejected, (state) => {
       state.isLoading = false;
     });
   },
