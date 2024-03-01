@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-import projects from "../../utils/projects";
-import QuickAccess from "./QuickAccess";
+// import QuickAccess from "./QuickAccess";
 import ProjectCard from "../project/ProjectCard";
+import { useSelector } from "react-redux";
 
 const Main = () => {
+  const { projects } = useSelector((store) => store.project);
+
   return (
-    <div className="py-6 px-[60px]">
+    <div className="py-6 px-[60px] bg-white">
       <h1 className="text-2xl 2xl:text-3xl font-medium">Hello, Varshith.</h1>
       <div className="py-4 flex justify-between">
         <h1 className="font-medium 2xl:text-xl text-gray-700">
@@ -16,11 +18,11 @@ const Main = () => {
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {projects.map((project, ind) => (
+        {projects.slice(0, 3).map((project, ind) => (
           <ProjectCard key={ind} project={project} />
         ))}
       </div>
-      <QuickAccess />
+      {/* <QuickAccess /> */}
     </div>
   );
 };

@@ -95,13 +95,13 @@ const Board = () => {
             placeholder="Search"
           />
         </div>
-        <div className="flex -space-x-5 items-center">
+        <div className="flex -space-x-4 items-center">
           {project.participants?.map((participant, index) => (
             <img
               key={index}
               src="/avatar.svg"
               alt="avatar"
-              className="w-10 h-10"
+              className="w-8 h-8"
             />
           ))}
           {project.participants?.length > 3 && (

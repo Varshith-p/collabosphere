@@ -60,9 +60,10 @@ export const getAllProjects = asyncHandler(async (req, res) => {
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "Unauthorized" });
   }
-  const projects = await Project.find({ participants: userId }).populate(
-    "tasks"
-  );
+  const projects = await Project.find({ participants: userId }).populate([
+    "tasks",
+    { path: "participants", select: "name email" },
+  ]);
   return res
     .status(StatusCodes.OK)
     .json({ projects, message: "Projects sent" });

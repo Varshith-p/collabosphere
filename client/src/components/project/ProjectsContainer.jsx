@@ -76,7 +76,7 @@ const ProjectsContainer = ({ projects }) => {
                           className="w-6 h-6"
                         />
                         {/* <p>{project.admin}</p> */}
-                        <p>Varshith</p>
+                        <p>{project.participants[0].name}</p>
                       </div>
                     </td>
                   </tr>
