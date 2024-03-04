@@ -5,7 +5,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/user/userSlice";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
@@ -29,10 +29,13 @@ const ProfileMenu = () => {
         <ChevronDown />
       </PopoverTrigger>
       <PopoverContent className="w-[240px] mr-10 flex flex-col gap-1 text-sm 2xl:text-base font-geist font-light">
-        <div className="flex items-center gap-2 p-2 cursor-pointer hover:bg-primary-foreground rounded">
+        <Link
+          to="/user/profile"
+          className="flex items-center gap-2 p-2 cursor-pointer hover:bg-primary-foreground rounded"
+        >
           <UserCircleIcon strokeWidth={2} className="h-4 w-4" />
           <span>My Profile</span>
-        </div>
+        </Link>
         <div
           onClick={() => {
             dispatch(logout());

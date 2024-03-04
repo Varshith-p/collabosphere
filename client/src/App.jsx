@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import { Login, Register } from "./pages/auth";
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile/Profile";
 import ProtectedLayout from "./components/ProtectedLayout";
 import {
   Board,
