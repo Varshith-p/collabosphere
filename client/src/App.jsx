@@ -14,6 +14,7 @@ import {
   Access,
   Files,
   File,
+  Chat,
 } from "./pages/project";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="new" element={<CreateProject />} />
             <Route path=":id" element={<Project />}>
               <Route path="board" element={<Board />} />
+              <Route path="chat" element={<Chat />} />
               <Route path="resources">
                 <Route index element={<Files />} />
                 <Route path=":fileId" element={<File />} />

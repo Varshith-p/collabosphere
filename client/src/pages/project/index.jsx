@@ -5,6 +5,7 @@ import Details from "./Details";
 import Access from "./Access";
 import Files from "./Files";
 import File from "./File";
+import Chat from "./Chat";
 import CreateProject from "./CreateProject";
 
 export {
@@ -16,4 +17,5 @@ export {
   Access,
   Files,
   File,
+  Chat,
 };

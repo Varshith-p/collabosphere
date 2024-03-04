@@ -9,6 +9,7 @@ import authRouter from "./routes/authRoutes.js";
 import projectRouter from "./routes/projectRoutes.js";
 import taskRouter from "./routes/taskRoutes.js";
 import resourceRouter from "./routes/resourceRoutes.js";
+import messageRouter from "./routes/messageRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import { auth } from "./middleware/auth.js";
 
@@ -50,6 +51,7 @@ app.use("/api/v1/users", auth, userRouter);
 app.use("/api/v1/projects", auth, projectRouter);
 app.use("/api/v1/tasks", auth, taskRouter);
 app.use("/api/v1/resources", auth, upload.single("file"), resourceRouter);
+app.use("/api/v1/messages", auth, messageRouter);
 
 // not-found
 app.all("*", (req, res) => {
