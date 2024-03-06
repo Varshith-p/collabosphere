@@ -21,7 +21,7 @@ const Header = () => {
   const { pathname } = useLocation();
 
   return (
-    <header className="fixed w-screen font-geist z-30 bg-[#FAFAFA] h-16 px-4 md:px-[60px] border-b border-[#EEEEFF] flex items-center justify-between">
+    <header className="fixed w-screen font-geist z-30 bg-[#FAFAFA] h-16 px-4 md:px-[60px] border-b border-border-color flex items-center justify-between">
       <Link
         to="/user/your-work"
         className="font-medium text-2xl cursor-pointer flex gap-2 items-center"

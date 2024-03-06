@@ -2,6 +2,7 @@ import Project from "../models/Project.js";
 import asyncHandler from "express-async-handler";
 import { StatusCodes } from "http-status-codes";
 import Resource from "../models/Resource.js";
+import Message from "../models/Message.js";
 
 export const createProject = asyncHandler(async (req, res) => {
   const { userId } = req.user;
@@ -40,17 +41,21 @@ export const getProject = asyncHandler(async (req, res) => {
     "tasks",
     { path: "participants", select: "name email" },
   ]);
-  const resources = await Resource.find({ project: projectId })
-    .populate("uploadedBy", "name")
-    .sort("-createdAt");
   if (!project) {
     return res
       .status(StatusCodes.NOT_FOUND)
       .json({ message: "Project not found" });
   }
+  const resources = await Resource.find({ project: projectId })
+    .populate("uploadedBy", "name")
+    .sort("-createdAt");
+  const messages = await Message.find({ project: projectId }).populate(
+    "sender",
+    "name"
+  );
   return res
     .status(StatusCodes.OK)
-    .json({ project, resources, message: "Projects sent" });
+    .json({ project, resources, messages, message: "Projects sent" });
 });
 
 export const getAllProjects = asyncHandler(async (req, res) => {

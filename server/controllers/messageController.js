@@ -9,8 +9,8 @@ export const createMessage = asyncHandler(async (req, res) => {
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "Unauthorized" });
   }
-  const { message, projectId } = req.body;
-  if (!message || !projectId) {
+  const { content, project } = req.body;
+  if (!content || !project) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: "Provide all details" });
