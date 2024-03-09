@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import getTasksByMonthStatus from "@/utils/getOverview";
+import { useEffect, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -8,69 +10,26 @@ import {
   YAxis,
 } from "recharts";
 
-const data = [
-  {
-    name: "Jan",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Feb",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Mar",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Apr",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "May",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Jun",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Jul",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Aug",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Sep",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Oct",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Nov",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Dec",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
+const defaultData = [
+  { name: "Jan", total: 0 },
+  { name: "Feb", total: 0 },
+  { name: "Mar", total: 0 },
+  { name: "Apr", total: 0 },
+  { name: "May", total: 0 },
+  { name: "Jun", total: 0 },
+  { name: "Jul", total: 0 },
+  { name: "Aug", total: 0 },
+  { name: "Sep", total: 0 },
+  { name: "Oct", total: 0 },
+  { name: "Nov", total: 0 },
+  { name: "Dec", total: 0 },
 ];
+
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="custom-tooltip bg-primary-foreground rounded-[6px] px-4 py-2">
-        <p className="label">{`${label}: ${payload[0].value}`}</p>
-        {/* <div>
-          {payload.map((pld, index) => (
-            <div key={index} style={{ display: "inline-block", padding: 10 }}>
-              <div style={{ color: pld.fill }}>{pld.value}</div>
-              <div>{pld.dataKey}</div>
-            </div>
-          ))}
-        </div> */}
+      <div className="custom-tooltip bg-primary-foreground rounded-[6px] px-2 py-1">
+        <p className="label text-sm font-geist">{`${label} - ${payload[0].value}`}</p>
       </div>
     );
   }
@@ -78,7 +37,15 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-const Overview = () => {
+const Overview = ({ projects, userId }) => {
+  const [data, setData] = useState(defaultData);
+
+  useEffect(() => {
+    setData(getTasksByMonthStatus(projects, userId));
+  }, [projects, userId]);
+
+  const tickCount = Math.max(...data.map((entry) => entry.total));
+
   return (
     <ResponsiveContainer width="100%" height={350}>
       <BarChart data={data}>
@@ -95,7 +62,7 @@ const Overview = () => {
           fontSize={12}
           tickLine={false}
           axisLine={false}
-          tickFormatter={(value) => `$${value}`}
+          tickCount={tickCount + 1}
         />
         <Bar
           dataKey="total"
