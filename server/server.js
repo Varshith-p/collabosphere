@@ -68,7 +68,7 @@ app.use(express.json());
 
 // Route handlers
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/users", auth, userRouter);
+app.use("/api/v1/users", auth, upload.single("file"), userRouter);
 app.use("/api/v1/projects", auth, projectRouter);
 app.use("/api/v1/tasks", auth, taskRouter);
 app.use("/api/v1/resources", auth, upload.single("file"), resourceRouter);

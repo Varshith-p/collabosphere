@@ -39,7 +39,7 @@ export const getProject = asyncHandler(async (req, res) => {
   const { id: projectId } = req.params;
   const project = await Project.findOne({ _id: projectId }).populate([
     "tasks",
-    { path: "participants", select: "name email" },
+    { path: "participants", select: "name email image" },
   ]);
   if (!project) {
     return res
@@ -51,7 +51,7 @@ export const getProject = asyncHandler(async (req, res) => {
     .sort("-createdAt");
   const messages = await Message.find({ project: projectId }).populate(
     "sender",
-    "name"
+    "name image"
   );
   return res
     .status(StatusCodes.OK)
@@ -65,10 +65,9 @@ export const getAllProjects = asyncHandler(async (req, res) => {
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "Unauthorized" });
   }
-  const projects = await Project.find({ participants: userId }).populate([
-    "tasks",
-    { path: "participants", select: "name email" },
-  ]);
+  const projects = await Project.find({ participants: userId })
+    .populate(["tasks", { path: "participants", select: "name email image" }])
+    .sort("-updatedAt");
   return res
     .status(StatusCodes.OK)
     .json({ projects, message: "Projects sent" });
@@ -94,7 +93,7 @@ export const updateProject = asyncHandler(async (req, res) => {
   });
   const project = await Project.findOne({ _id: projectId }).populate([
     "tasks",
-    { path: "participants", select: "name email" },
+    { path: "participants", select: "name email image" },
   ]);
   return res
     .status(StatusCodes.OK)

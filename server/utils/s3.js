@@ -10,6 +10,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const bucketName = process.env.AWS_BUCKET_NAME;
+const publicBucketName = process.env.AWS_PUBLIC_BUCKET_NAME;
 const bucketRegion = process.env.AWS_BUCKET_REGION;
 const accessKey = process.env.AWS_ACCESS_KEY;
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
@@ -48,6 +49,28 @@ export const getUrl = async (key) => {
 export const deleteObject = async (key) => {
   const params = {
     Bucket: bucketName,
+    Key: key,
+  };
+
+  const command = new DeleteObjectCommand(params);
+  await s3.send(command);
+};
+
+export const uploadImage = async (file, key) => {
+  const params = {
+    Bucket: publicBucketName,
+    Key: key,
+    Body: file.buffer,
+    ContentType: file.mimetype,
+  };
+
+  const command = new PutObjectCommand(params);
+  await s3.send(command);
+};
+
+export const deleteImage = async (key) => {
+  const params = {
+    Bucket: publicBucketName,
     Key: key,
   };
 
