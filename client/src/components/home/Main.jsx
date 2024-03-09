@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
-// import QuickAccess from "./QuickAccess";
 import ProjectCard from "../project/ProjectCard";
 import { useSelector } from "react-redux";
+import QuickAccess from "./QuickAccess";
+import getQuickAccess from "@/utils/getQuickAccess";
 
 const Main = () => {
-  const { projects } = useSelector((store) => store.project);
+  const { projects, user } = useSelector((store) => store.project);
+  const quickAccess = getQuickAccess(projects, user._id);
+
+  console.log(quickAccess);
 
   return (
     <div className="py-6 px-[60px] bg-white">
@@ -22,7 +26,7 @@ const Main = () => {
           <ProjectCard key={ind} project={project} />
         ))}
       </div>
-      {/* <QuickAccess /> */}
+      <QuickAccess quickAccess={quickAccess} />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import { Login, Register } from "./pages/auth";
 import Home from "./pages/Home";
-import Profile from "./pages/profile/Profile";
+import { Profile, EditProfile } from "./pages/profile";
 import ProtectedLayout from "./components/ProtectedLayout";
 import {
   Board,
@@ -40,7 +40,10 @@ function App() {
               <Route path="access" element={<Access />} />
             </Route>
           </Route>
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile">
+            <Route index element={<Profile />} />
+            <Route path="edit" element={<EditProfile />} />
+          </Route>
         </Route>
       </Routes>
     </Router>

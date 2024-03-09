@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { DragDropContext } from "react-beautiful-dnd";
 import { getTasksGroupedbyColumns } from "../../utils/columns";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Column from "../../components/project/Column";
 import { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
@@ -97,12 +98,14 @@ const Board = () => {
         </div>
         <div className="flex -space-x-4 items-center">
           {project.participants?.map((participant, index) => (
-            <img
-              key={index}
-              src="/avatar.svg"
-              alt="avatar"
-              className="w-8 h-8"
-            />
+            <Avatar key={index} className="h-8 w-8">
+              <AvatarImage
+                src={`${participant.image || "/avatar.svg"}`}
+                alt="Avatar"
+                className="object-cover"
+              />
+              <AvatarFallback>{participant.name[0]}</AvatarFallback>
+            </Avatar>
           ))}
           {project.participants?.length > 3 && (
             <div className="w-9 h-9 text-cancelText rounded-full border border-border-color bg-cancel flex justify-center items-center cursor-pointer">

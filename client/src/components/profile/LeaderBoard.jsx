@@ -10,7 +10,11 @@ const LeaderBoard = ({ project }) => {
         <div key={index} className="flex items-center">
           {/* <div>{index + 1}</div> */}
           <Avatar className="h-9 w-9">
-            <AvatarImage src="/avatars/01.png" alt="Avatar" />
+            <AvatarImage
+              src={`${participant.image || "/avatar.svg"}`}
+              alt="Avatar"
+              className="object-cover"
+            />
             <AvatarFallback>{participant.name[0]}</AvatarFallback>
           </Avatar>
           <div className="ml-4 space-y-1">

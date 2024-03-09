@@ -46,6 +46,43 @@ export const register = createAsyncThunk(
   }
 );
 
+export const uploadPicture = createAsyncThunk(
+  "/user/image/upload",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/api/v1/users`,
+        payload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+export const removePicture = createAsyncThunk(
+  "/user/image/remove",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/v1/users`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: initialState,
@@ -84,6 +121,16 @@ const userSlice = createSlice({
     });
     builder.addCase(register.rejected, (state) => {
       state.isLoading = false;
+    });
+
+    builder.addCase(uploadPicture.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
+      localStorage.setItem("user", JSON.stringify(payload.user));
+    });
+
+    builder.addCase(removePicture.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
+      localStorage.setItem("user", JSON.stringify(payload.user));
     });
   },
 });

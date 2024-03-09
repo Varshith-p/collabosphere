@@ -2,6 +2,7 @@ import { SendHorizonal } from "lucide-react";
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { Link, useOutletContext } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSelector, useDispatch } from "react-redux";
 import { sendMessage } from "@/redux/project/projectSlice";
 
@@ -43,7 +44,7 @@ const Chat = () => {
     e.preventDefault();
     const payload = { content, project: project._id };
     const newMessage = {
-      sender: { id: user._id, name: user.name },
+      sender: { id: user._id, name: user.name, image: user.image },
       content,
       project: project._id,
     };
@@ -72,11 +73,14 @@ const Chat = () => {
                 message.sender.id == user._id && "self-end flex-row-reverse"
               }`}
             >
-              <img
-                src="/avatar.svg"
-                alt="avatar"
-                className="w-8 h-8 2xl:w-10 2xl:h-10"
-              />
+              <Avatar className="h-6 w-6">
+                <AvatarImage
+                  src={`${message.sender.image || "/avatar.svg"}`}
+                  alt="Avatar"
+                  className="object-cover"
+                />
+                <AvatarFallback>{message.sender.name[0]}</AvatarFallback>
+              </Avatar>
               <div className="bg-white rounded-[6px] py-1 px-3 border border-border-color">
                 <p className="text-sm text-cancelText">{message.sender.name}</p>
                 <p className="text-lg">{message.content}</p>
