@@ -1,5 +1,9 @@
 import Loading from "@/components/Loading";
-import { removePicture, uploadPicture } from "@/redux/user/userSlice";
+import {
+  removePicture,
+  updateProfile,
+  uploadPicture,
+} from "@/redux/user/userSlice";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -10,6 +14,7 @@ const EditProfile = () => {
   const { user } = useSelector((store) => store.user);
 
   const [isUpdated, setIsUpdated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -37,17 +42,31 @@ const EditProfile = () => {
     }
   };
 
+  const handleSubmit = async () => {
+    if (!name || !email) {
+      alert("no");
+      return;
+    }
+    setIsLoading(true);
+    const res = await dispatch(updateProfile({ name, email }));
+    if (res.meta.requestStatus == "fulfilled") {
+      console.log("done");
+      setIsUpdated(false);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <section>
       <div className="px-[60px] py-6 flex items-center justify-between">
         <h1 className="text-2xl font-medium">Edit Profile</h1>
         <button
-          // onClick={handleSubmit}
-          className={`py-1 px-[14px] flex items-center justify-center rounded-[6px] h-[42px] bg-primary text-white ${
+          onClick={handleSubmit}
+          className={`py-1 px-[14px] w-32 flex items-center justify-center rounded-[6px] h-[42px] bg-primary text-white ${
             !isUpdated && "bg-primary/50 pointer-events-none"
           }`}
         >
-          Save
+          {isLoading ? <Loading /> : "Save"}
         </button>
       </div>
       <div className="px-[60px] pb-6 flex flex-col items-start gap-[24px]">

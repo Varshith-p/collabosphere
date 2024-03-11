@@ -83,6 +83,25 @@ export const removePicture = createAsyncThunk(
   }
 );
 
+export const updateProfile = createAsyncThunk(
+  "/user/profile/update",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:5000/api/v1/users`,
+        payload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: initialState,
@@ -129,6 +148,11 @@ const userSlice = createSlice({
     });
 
     builder.addCase(removePicture.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
+      localStorage.setItem("user", JSON.stringify(payload.user));
+    });
+
+    builder.addCase(updateProfile.fulfilled, (state, { payload }) => {
       state.user = payload.user;
       localStorage.setItem("user", JSON.stringify(payload.user));
     });

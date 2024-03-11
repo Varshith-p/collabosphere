@@ -19,6 +19,27 @@ export const getAllUsers = asyncHandler(async (req, res) => {
   return res.status(StatusCodes.OK).json({ users, message: "Users found" });
 });
 
+export const updateProfile = asyncHandler(async (req, res) => {
+  const { userId } = req.user;
+  if (!userId) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "Unauthorized" });
+  }
+  const userExists = await User.findById(userId);
+  if (!userExists) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "User does not exist" });
+  }
+  // const { name, email } = req.body;
+  const user = await User.findByIdAndUpdate(userId, req.body, {
+    runValidators: true,
+    new: true,
+  });
+  return res.status(StatusCodes.OK).json({ user, message: "Profile updated" });
+});
+
 export const uploadPicture = asyncHandler(async (req, res) => {
   const { userId } = req.user;
   if (!userId) {
