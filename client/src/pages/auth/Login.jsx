@@ -86,9 +86,9 @@ const Login = () => {
             {isLoading ? <Loading /> : "Sign In"}
           </button>
           <div className="text-sm">
-            <span className="text-slate-700">Already have a account ? </span>
+            <span className="text-slate-700">Don&apos;t have an account? </span>
             <Link to="/register" className="text-primary underline">
-              Sign In
+              Sign Up
             </Link>
           </div>
         </form>

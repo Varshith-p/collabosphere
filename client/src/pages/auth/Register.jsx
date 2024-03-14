@@ -115,7 +115,7 @@ const Register = () => {
             {isLoading ? <Loading /> : "Sign In"}
           </button>
           <div className="text-sm">
-            <span className="text-slate-700">Already have a account ? </span>
+            <span className="text-slate-700">Already have an account? </span>
             <Link to="/login" className="text-primary underline">
               Sign In
             </Link>

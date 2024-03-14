@@ -91,7 +91,6 @@ export const deleteFile = asyncHandler(async (req, res) => {
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: "Project does not exist" });
   }
-  console.log("first");
   const { id: resourceId } = req.params;
   const resource = await Resource.findOne({
     _id: resourceId,
@@ -102,7 +101,6 @@ export const deleteFile = asyncHandler(async (req, res) => {
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: "Resource does not exist" });
   }
-  console.log("delete start");
   await deleteObject(`${projectId}/${resource.name}`);
   await Resource.findByIdAndDelete(resourceId);
   console.log("delete done");

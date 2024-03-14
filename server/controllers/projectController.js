@@ -55,7 +55,7 @@ export const getProject = asyncHandler(async (req, res) => {
   );
   return res
     .status(StatusCodes.OK)
-    .json({ project, resources, messages, message: "Projects sent" });
+    .json({ project, resources, messages, message: "Project sent" });
 });
 
 export const getAllProjects = asyncHandler(async (req, res) => {
