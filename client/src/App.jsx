@@ -16,6 +16,10 @@ import {
   File,
   Chat,
 } from "./pages/project";
+import Directory from "./pages/directory/Directory";
+import PublicProject from "./pages/directory/PublicProject";
+import ProjectDetails from "./pages/directory/ProjectDetails";
+import PublicResources from "./pages/directory/PublicResources";
 
 function App() {
   return (
@@ -38,6 +42,16 @@ function App() {
               </Route>
               <Route path="details" element={<Details />} />
               <Route path="access" element={<Access />} />
+            </Route>
+          </Route>
+          <Route path="directory">
+            <Route index element={<Directory />} />
+            <Route path=":id" element={<PublicProject />}>
+              <Route path="details" element={<ProjectDetails />} />
+              <Route path="resources">
+                <Route index element={<PublicResources />} />
+                <Route path=":fileId" element={<File />} />
+              </Route>
             </Route>
           </Route>
           <Route path="profile">
