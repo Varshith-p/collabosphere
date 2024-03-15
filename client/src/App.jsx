@@ -20,6 +20,7 @@ import Directory from "./pages/directory/Directory";
 import PublicProject from "./pages/directory/PublicProject";
 import ProjectDetails from "./pages/directory/ProjectDetails";
 import PublicResources from "./pages/directory/PublicResources";
+import Resource from "./pages/directory/Resource";
 
 function App() {
   return (
@@ -50,7 +51,7 @@ function App() {
               <Route path="details" element={<ProjectDetails />} />
               <Route path="resources">
                 <Route index element={<PublicResources />} />
-                <Route path=":fileId" element={<File />} />
+                <Route path=":fileId" element={<Resource />} />
               </Route>
             </Route>
           </Route>
