@@ -25,7 +25,7 @@ const Files = () => {
           <div className="bg-[#f6f8fa] grid grid-cols-6 items-center">
             <p className="font-medium py-2 px-4 col-span-2">Name</p>
             <p className="font-medium py-2 px-4 col-span-2">Uploaded By</p>
-            <p className="font-medium py-2 px-4">Time</p>
+            <p className="font-medium py-2 px-4">Uploaded At</p>
             <p className="font-medium py-2 px-4 text-right">Actions</p>
           </div>
           <div className="">

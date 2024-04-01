@@ -3,8 +3,13 @@ import { getTasksGroupedbyColumns } from "@/utils/columns";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const ProjectsContainer = ({ projects }) => {
+  const [query, setQuery] = useState("");
+  const filteredProjects = projects.filter((project) =>
+    project.name.toLowerCase().includes(query.toLowerCase())
+  );
   return (
     <section className="py-6 px-[60px]">
       <div className="flex flex-col gap-6">
@@ -24,6 +29,8 @@ const ProjectsContainer = ({ projects }) => {
           <input
             type="text"
             placeholder="search projects"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             className="flex-1 focus:outline-none rounded-[6px]"
           />
         </div>
@@ -41,7 +48,7 @@ const ProjectsContainer = ({ projects }) => {
               </tr>
             </thead>
             <tbody>
-              {projects.map((project, index) => {
+              {filteredProjects.map((project, index) => {
                 const cols = getTasksGroupedbyColumns(project.tasks);
                 return (
                   <tr key={index} className="hover:bg-[#f6f8fa] rounded-[6px]">

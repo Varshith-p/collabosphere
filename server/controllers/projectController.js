@@ -38,7 +38,10 @@ export const getProject = asyncHandler(async (req, res) => {
   }
   const { id: projectId } = req.params;
   const project = await Project.findOne({ _id: projectId }).populate([
-    "tasks",
+    {
+      path: "tasks",
+      populate: { path: "assignee", select: "name" },
+    },
     { path: "participants", select: "name email image" },
   ]);
   if (!project) {

@@ -21,7 +21,8 @@ import getTasksSummary from "@/utils/getTaskSummary";
 
 export function Profile() {
   const dispatch = useDispatch();
-  const { projects, isLoading, user } = useSelector((store) => store.project);
+  const { projects, isLoading } = useSelector((store) => store.project);
+  const { user } = useSelector((store) => store.user);
 
   const [project, setProject] = useState(projects[0]);
   const [open, setOpen] = useState(false);

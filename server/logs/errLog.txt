@@ -22,3 +22,9 @@
 20240301	00:20:22	6032798c-88c2-4511-91ec-73ee1e61e592	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
 20240301	00:20:22	14b2a87c-ecd2-4baf-8314-6e47a9680106	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
 20240301	00:20:22	46374b51-f4f3-4802-8317-8bb7e4cf4ac8	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240316	10:19:15	c4e0b8ad-7122-4273-8558-dedd000ae85e	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240316	10:20:59	754d62b6-802c-45f1-a396-1290fce33700	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240326	12:31:12	7bd9379d-2c93-4bf4-9215-acc869116024	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240326	12:34:56	0b96a093-ac9e-4ea1-a2a7-1b2835a6a470	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net
+20240327	09:54:07	0805fdbb-a325-43f1-948f-b994af98fcd9	MongoServerSelectionError: connection <monitor> to [64:ff9b::2bcc:5183]:27017 timed out
+20240327	09:54:19	2404d7d6-4987-4600-8605-79674b141d10	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-r0v1ulu-shard-00-00.brh4gbr.mongodb.net

@@ -82,7 +82,9 @@ const Chat = () => {
                 <AvatarFallback>{message.sender.name[0]}</AvatarFallback>
               </Avatar>
               <div className="bg-white rounded-[6px] py-1 px-3 border border-border-color">
-                <p className="text-sm text-cancelText">{message.sender.name}</p>
+                <p className="text-sm text-cancelText">
+                  {message.sender.id == user._id ? "You" : message.sender.name}
+                </p>
                 <p className="text-lg">{message.content}</p>
               </div>
             </div>

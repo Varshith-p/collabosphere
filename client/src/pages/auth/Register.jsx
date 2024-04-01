@@ -41,7 +41,7 @@ const Register = () => {
     // <section className="font-geist flex w-screen h-screen">
     <section className="font-geist flex w-screen h-screen items-center bg-primary-foreground">
       {/* <div className="w-[460px] 2xl:w-[540px] flex flex-col px-8 lg:px-[60px] py-10 2xl:justify-center gap-3 md:gap-8 overflow-y-auto"> */}
-      <div className="w-[460px] 2xl:w-[540px] mx-auto h-[90%] bg-white border border-border-color rounded-[6px] flex flex-col px-8 lg:px-[60px] py-10  gap-3 md:gap-8 overflow-y-auto">
+      <div className="w-[460px] 2xl:w-[540px] mx-auto h-[90%] bg-white border border-border-color rounded-[6px] flex flex-col px-8 lg:px-[60px] py-10  gap-3 md:gap-8 overflow-hidden">
         <h1 className="text-3xl font-medium flex gap-2 items-center">
           <img src="./logo.svg" alt="logo" className="w-8 h-8" />
           Collabosphere
@@ -50,10 +50,10 @@ const Register = () => {
           <div className="text-lg md:text-xl">
             Create your Collabosphere account
           </div>
-          <div className="text-[#A9AAAE] md:text-lg">
+          {/* <div className="text-[#A9AAAE] md:text-lg">
             Let&apos;s get started! Fill in the form below to create your free
-            Jerrydata account.
-          </div>
+            Collabosphere account.
+          </div> */}
         </div>
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-1">

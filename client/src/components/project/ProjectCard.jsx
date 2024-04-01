@@ -21,7 +21,7 @@ const ProjectCard = ({ project }) => {
         <span className="bg-cancel text-cancelText font-medium w-fit justify-self-end rounded-full px-3 text-sm 2xl:text-base">
           {cols.get("Todo").tasks.length}
         </span>
-        <p>Done tasks</p>
+        <p>Completed tasks</p>
         <span className="bg-cancel text-cancelText font-medium w-fit justify-self-end rounded-full px-3 text-sm 2xl:text-base">
           {cols.get("Done").tasks.length}
         </span>

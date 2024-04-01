@@ -34,10 +34,10 @@ const Header = () => {
           <Link
             to={navLink.link}
             key={index}
-            className={`flex h-full items-center px-[10px] gap-[10px] border-b-2 ${
+            className={`flex h-full items-center px-[10px] gap-[10px] ${
               pathname.startsWith(navLink.link)
-                ? "border-primary"
-                : "text-[#61656C] border-transparent"
+                ? "text-primary"
+                : "text-[#61656C]"
             }`}
           >
             {navLink.icon}

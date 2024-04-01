@@ -24,7 +24,7 @@ const QuickAccess = ({ quickAccess }) => {
             </tr>
           </thead>
           <tbody>
-            {quickAccess.map((task, index) => (
+            {quickAccess.slice(0, 5).map((task, index) => (
               <tr key={index} className="hover:bg-[#f6f8fa] rounded-[6px]">
                 <td className="px-4 py-2 border-t border-border-color cursor-pointer text-primary">
                   <Link to={`/user/projects/${task.project}/board`}>

@@ -166,11 +166,19 @@ const Details = () => {
             {selectedUsers?.map((user, index) => (
               <div
                 key={index}
-                className="py-2 px-3 cursor-pointer bg-primary-foreground rounded-[6px] flex justify-between items-center"
+                className="py-2 px-3 cursor-pointer bg-primary-foreground rounded-[6px] flex gap-2 items-center"
               >
-                <p className="flex flex-col">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage
+                    src={`${user.image || "/avatar.svg"}`}
+                    alt="Avatar"
+                    className="object-cover"
+                  />
+                  <AvatarFallback>{user.name[0]}</AvatarFallback>
+                </Avatar>
+                <p className="flex flex-col flex-1">
                   <span>{user.name}</span>
-                  <span>{user.email}</span>
+                  <span className="text-sm">{user.email}</span>
                 </p>
                 {user._id != project.admin && (
                   <X onClick={() => handleRemove(user)} />

@@ -12,7 +12,7 @@ const Main = () => {
 
   return (
     <div className="py-6 px-[60px] bg-white">
-      <h1 className="text-2xl 2xl:text-3xl font-medium">Hello, Varshith.</h1>
+      <h1 className="text-2xl 2xl:text-3xl font-medium">Hello, {user.name}.</h1>
       <div className="py-4 flex justify-between">
         <h1 className="font-medium 2xl:text-xl text-gray-700">
           Recent Projects

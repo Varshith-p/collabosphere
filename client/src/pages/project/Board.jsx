@@ -5,18 +5,25 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Column from "../../components/project/Column";
 import { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
-import { Search } from "lucide-react";
 import Loading from "../Loading";
 import { updateTaskStatus } from "@/redux/project/projectSlice";
-import { useDispatch } from "react-redux";
-// import MobileSidebar from "../../components/MobileSidebar";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { ChevronDown } from "lucide-react";
 
 const Board = () => {
   const [project] = useOutletContext();
   const dispatch = useDispatch();
+  const { user } = useSelector((store) => store.user);
   const [columns, setColumns] = useState(
     getTasksGroupedbyColumns(project?.tasks)
   );
+  const [open, setOpen] = useState(false);
+  const [filter, setFilter] = useState("All");
 
   useEffect(() => {
     if (project) {
@@ -88,15 +95,37 @@ const Board = () => {
         <h1 className="text-2xl 2xl:text-3xl font-medium">Board</h1>
       </div>
       <div className="flex gap-3 items-center">
-        <div className="flex gap-2 w-[240px] 2xl:w-[280px] p-2 items-center h-10 border border-border-color rounded-[6px]">
-          <Search size={18} stroke="#61656C" />
-          <input
-            type="text"
-            className="focus:outline-none focus:border-0 w-full"
-            placeholder="Search"
-          />
-        </div>
-        <div className="flex -space-x-4 items-center">
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <div
+              className={`h-10 p-2 rounded-[6px] cursor-pointer focus:outline-none border border-border-color flex items-center w-[240px] 2xl:w-[280px]`}
+            >
+              <p className="w-full">{filter}</p>
+              <ChevronDown />
+            </div>
+          </PopoverTrigger>
+          <PopoverContent className="w-[240px] 2xl:w-[280px] flex flex-col gap-1 text-sm 2xl:text-base font-geist font-light">
+            <div
+              onClick={() => {
+                setFilter("All");
+                setOpen(false);
+              }}
+              className="p-2 cursor-pointer hover:bg-primary-foreground rounded"
+            >
+              All
+            </div>
+            <div
+              onClick={() => {
+                setFilter("Me");
+                setOpen(false);
+              }}
+              className="p-2 cursor-pointer hover:bg-primary-foreground rounded"
+            >
+              Me
+            </div>
+          </PopoverContent>
+        </Popover>
+        <div className="flex -space-x-3 items-center">
           {project.participants?.map((participant, index) => (
             <Avatar key={index} className="h-8 w-8">
               <AvatarImage
@@ -107,18 +136,29 @@ const Board = () => {
               <AvatarFallback>{participant.name[0]}</AvatarFallback>
             </Avatar>
           ))}
-          {project.participants?.length > 3 && (
+          {/* {project.participants?.length > 3 && (
             <div className="w-9 h-9 text-cancelText rounded-full border border-border-color bg-cancel flex justify-center items-center cursor-pointer">
               +{project.participants?.length - 3}
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <div className="w-full">
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <div className="flex gap-4">
             {Array.from(columns.entries()).map(([id, column], index) => (
-              <Column key={id} id={id} tasks={column.tasks} index={index} />
+              <Column
+                key={id}
+                id={id}
+                tasks={
+                  filter == "All"
+                    ? column.tasks
+                    : column.tasks.filter(
+                        (task) => task.assignee._id == user._id
+                      )
+                }
+                index={index}
+              />
             ))}
           </div>
         </DragDropContext>
